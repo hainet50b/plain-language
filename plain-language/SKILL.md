@@ -36,7 +36,7 @@ Each principle has application guidance, a reason, and an example.
 | [P07](#p07-give-reasons-and-select-background) | Normally give reasons; explain those reasons further when needed. |
 | [P08](#p08-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P09](#p09-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
-| [P10](#p10-respect-technical-meaning) | Preserve technical meanings and explain terms when readers need support. |
+| [P10](#p10-respect-technical-meaning) | Keep established technical terms and simplify the surrounding language first. |
 | [P11](#p11-choose-minimal-representative-examples) | Keep examples relevant, minimal, and representative for the reader. |
 | [P12](#p12-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
 | [P13](#p13-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
@@ -237,13 +237,21 @@ cancellation is the action, and validation is its object.
 
 ### P10 Respect technical meaning
 
-**Application.** Preserve the specific meaning of a technical term. Add a
-definition, explanation, or example when the reader's knowledge and the
-passage's purpose call for it. When translating, follow
-[P13](#p13-edit-and-translate-transparently).
+**Application.** Use established terms for technical concepts and preserve
+their specific meanings. Improve readability first by simplifying the
+surrounding wording and sentence structure. Do not replace a technical term
+with a general expression merely because the reader's subject knowledge is
+unknown. When translating, use established terms in the target language
+where available.
+
+Add a definition, explanation, or example when the reader's knowledge and
+the passage's purpose call for it. When translating, follow
+[P13](#p13-edit-and-translate-transparently); do not add explanations that
+are absent from the source.
 
 **Reason.** An easier word may broaden a technical meaning or erase a
-necessary distinction.
+necessary distinction. Established terms also let readers recognize a
+concept and connect it to their subject knowledge.
 
 **Example.** Keep "idempotent" rather than replacing it with "safe to repeat."
 If readers need an explanation, write:

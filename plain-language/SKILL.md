@@ -2,12 +2,12 @@
 name: plain-language
 license: MIT OR Apache-2.0
 description: >-
-  Apply plain-language principles to keep terminology consistent, make
-  logical structure clear, and use wording suited to the reader. Use when
-  composing, writing, editing, reviewing, or translating any prose,
-  including every reply of your own in a chat except a one-line statement
-  of a fact or result. Apply these principles even when the request does
-  not mention wording.
+  Read this skill before you write any reply of your own in a chat, except
+  a one-line statement of a fact or result, and before composing, writing,
+  editing, reviewing, or translating any prose. It applies plain-language
+  principles to keep terminology consistent, make logical structure clear,
+  and use wording suited to the reader, even when the request does not
+  mention wording.
 ---
 
 # plain-language

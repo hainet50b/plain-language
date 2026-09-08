@@ -5,8 +5,9 @@ description: >-
   Apply plain-language principles to keep terminology consistent, make
   logical structure clear, and use wording suited to the reader. Use when
   writing, editing, reviewing, or translating natural-language documents,
-  and when composing any AI response other than a one-line statement of a
-  fact or result, even when the request does not mention wording.
+  and when writing any reply of your own in a chat, except a one-line
+  statement of a fact or result. Apply these principles even when the
+  request does not mention wording.
 ---
 
 # plain-language

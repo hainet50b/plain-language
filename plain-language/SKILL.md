@@ -303,10 +303,11 @@ The explanation makes the metaphor understandable within the passage.
 
 ### P13 Edit and translate transparently
 
-**Application.** Actively improve wording, word order, sentence boundaries,
-and presentation. Translation may split or join sentences and turn clearly
-parallel items into lists. Preserve source information; do not add facts,
-reasons, or explanations to make the translation more helpful.
+**Application.** Improve wording, word order, sentence boundaries, and
+presentation. Translation may split or join sentences when the result keeps
+the claim, topic, and modifier attachments of the source, and may turn
+clearly parallel items into lists. Preserve source information; do not add
+facts, reasons, or explanations to make the translation more helpful.
 
 Handle changes according to what they affect:
 

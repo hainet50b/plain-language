@@ -16,9 +16,14 @@ Apply these principles so readers can follow the text and assess its
 meaning. Adapt them to the reader and purpose, regardless of anyone's
 native language.
 
-When writing, editing, translating into, or reviewing English, also read
-[references/english.md](references/english.md). Read that reference for
-English output or review, not merely because a source is in English.
+When writing, editing, translating into, or reviewing text in a language
+that has a language reference below, also read that reference. Read it for
+output or review in that language, not merely because a source is in it.
+
+| Language | Reference |
+| --- | --- |
+| English | [references/english.md](references/english.md) |
+| Japanese | [references/japanese.md](references/japanese.md) |
 
 Preserve meaning and logical structure before improving style. Among
 stylistic preferences, consistent terminology has the highest priority.

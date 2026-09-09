@@ -303,11 +303,11 @@ The explanation makes the metaphor understandable within the passage.
 
 ### P13 Edit and translate transparently
 
-**Application.** Improve wording, word order, sentence boundaries, and
-presentation. Translation may split or join sentences when the result keeps
-the claim, topic, and modifier attachments of the source, and may turn
-clearly parallel items into lists. Preserve source information; do not add
-facts, reasons, or explanations to make the translation more helpful.
+**Application.** Improve wording, word order, and presentation. Split or
+join sentences only where a sentence would otherwise be hard to read, and
+keep its claim, topic, and modifier attachments. Preserve source
+information; do not add facts, reasons, or explanations to make the
+translation more helpful.
 
 Handle changes according to what they affect:
 
@@ -318,9 +318,9 @@ Handle changes according to what they affect:
 | Resolve a material ambiguity or change a claim, condition, requirement strength, or causal relationship | Ask first unless the user has already explicitly authorized the change. |
 
 Keep editorial explanations separate from the edited or translated text.
-Do not silently select an ambiguous actor or condition. Treat the promotion
-of a supporting detail into a main claim as a change in emphasis, even
-when the facts remain unchanged.
+Do not silently select an ambiguous actor or condition. Treat moving a
+point between main claim and supporting detail, in either direction, as a
+change in emphasis, even when the facts remain unchanged.
 
 **Reason.** Editing can improve presentation while also changing how readers
 interpret the text. Authors need visibility into those changes.

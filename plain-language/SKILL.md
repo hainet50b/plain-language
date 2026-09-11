@@ -13,83 +13,168 @@ description: >-
 # plain-language
 
 Apply these principles so readers can follow the text and assess its
-meaning. Adapt them to the reader and purpose, regardless of anyone's
-native language.
+meaning.
 
-When writing, editing, translating into, or reviewing text in a language
-that has a language reference below, also read that reference. Read it for
-output or review in that language, not merely because a source is in it.
+When writing, editing, or reviewing text in a language that has a language
+reference below, or translating into that language, also read that
+reference. The source language of a translation alone does not call for
+its reference.
 
 | Language | Reference |
 | --- | --- |
 | English | [references/english.md](references/english.md) |
 | Japanese | [references/japanese.md](references/japanese.md) |
 
-Preserve meaning and logical structure before improving style. Among
-stylistic preferences, consistent terminology has the highest priority.
+When principles conflict, follow
+[P102](#p102-resolve-conflicts-by-precedence).
 
 ## Principle index
 
-Each principle has application guidance, a reason, and an example.
+Each principle has application guidance, a reason, and an example. The
+letter and the first digit of an ID are explained under
+[Maintain the principles](#maintain-the-principles).
 
 | ID | Principle |
 | --- | --- |
-| [P01](#p01-preserve-meaning) | Preserve meaning and logical structure when improving style. |
-| [P02](#p02-keep-terms-consistent) | Use the same term for the same concept. |
-| [P03](#p03-make-references-clear) | Use pronouns when their references are clear in context. |
-| [P04](#p04-adapt-to-the-reader-and-task) | Match the explanation and amount of detail to the reader and task. |
-| [P05](#p05-order-information-by-purpose) | Lead with conclusions for instructions and proposals; lead with premises to develop understanding. |
-| [P06](#p06-connect-information) | Connect new information to established context and make logical links clear. |
-| [P07](#p07-give-reasons-and-select-background) | Normally give reasons; explain those reasons further when needed. |
-| [P08](#p08-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
-| [P09](#p09-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
-| [P10](#p10-respect-technical-meaning) | Keep established technical terms and simplify the surrounding language first. |
-| [P11](#p11-choose-minimal-representative-examples) | Keep examples relevant, minimal, and representative for the reader. |
-| [P12](#p12-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
-| [P13](#p13-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
+| [P101](#p101-adapt-to-the-reader-and-task) | Match the explanation and amount of detail to the reader and task. |
+| [P102](#p102-resolve-conflicts-by-precedence) | Apply meaning and logical structure first, consistent terms second, and this file's principles before a language reference. |
+| [P103](#p103-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
+| [P201](#p201-give-reasons-and-select-background) | Normally give reasons; explain those reasons further when needed. |
+| [P202](#p202-choose-minimal-representative-examples) | Keep examples relevant, minimal, and representative for the reader. |
+| [P301](#p301-make-references-clear) | Use pronouns when their references are clear in context. |
+| [P302](#p302-order-information-by-purpose) | Lead with conclusions for instructions and proposals; lead with premises to develop understanding. |
+| [P303](#p303-connect-information) | Connect new information to established context and make logical links clear. |
+| [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
+| [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
+| [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
+| [P502](#p502-respect-technical-meaning) | Keep established technical terms and simplify the surrounding language first. |
+| [P701](#p701-preserve-meaning) | Preserve meaning and logical structure when improving style. |
+| [P702](#p702-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
 
-## Shared principles
+## 1xx Frame
 
-### P01 Preserve meaning
+### P101 Adapt to the reader and task
 
-**Application.** Preserve the intended meaning and logical structure,
-including:
+**Application.** Consider what the reader knows and what the text should
+help them do or understand. Assess language proficiency separately from
+subject knowledge. Provide the amount of detail that the task needs.
+Short answers, questions, and progress updates do not need extra sections
+or tables.
 
-- The relationship between main points and supporting details.
-- The scope of conditions and exceptions.
-- Quantities and uncertainty.
-- The strength of claims and requirements.
+When translating, follow [P702](#p702-edit-and-translate-transparently);
+do not add explanations that are absent from the source.
 
-Give these relationships and distinctions priority over brevity and
-grammatical preferences. Use [P13](#p13-edit-and-translate-transparently)
-to decide when a deliberate change needs explanation or confirmation.
+**Reason.** Familiarity with a language, product, or local convention does
+not determine subject knowledge. Extra explanation can help one reader
+while distracting another.
 
-**Reason.** An edit can retain the same facts while changing what a claim
-means or how much weight a supporting detail receives.
+**Example.** For readers who know distributed systems but are less
+familiar with English, keep "idempotent" and simplify the surrounding
+sentences. Do not assume that they need a basic lesson in distributed systems.
 
-**Example.** Keep "may fail" when failure is uncertain. Changing it to
-"will fail" makes the claim stronger.
+[Back to the principle index](#principle-index)
 
-### P02 Keep terms consistent
+### P102 Resolve conflicts by precedence
 
-**Application.** Use the same term for the same concept throughout the
-text, including objects and actions. Keep different concepts distinct.
-Respect established technical terms and exact product or project names.
-Do not introduce synonyms merely to avoid repetition.
+**Application.** When principles conflict, apply them in this order:
 
-Use pronouns under [P03](#p03-make-references-clear) and related noun and
-verb forms under [P09](#p09-express-actions-with-verbs) when they preserve
-the same concept.
+1. Preserve meaning and logical structure ([P701](#p701-preserve-meaning)).
+2. Keep terms consistent ([P501](#p501-keep-terms-consistent)).
+3. Apply the remaining principles.
 
-**Reason.** A different term can suggest a different concept, making
-readers check whether the meaning has changed.
+The principles in this file take precedence over the principles in a
+language reference. When this order does not settle a conflict, judge by
+[P701](#p701-preserve-meaning) and
+[P101](#p101-adapt-to-the-reader-and-task).
 
-**Example.** If "request" and "message" name the same object, use "request"
-in both sentences:
+**Reason.** Without a fixed order, the same conflict is settled differently
+from one passage to the next, and the text becomes inconsistent.
 
-> The client sends a request. The server validates the request.
+**Example.** Replacing a repeated term with a synonym would improve the
+rhythm of a sentence but break P501. Keep the term.
 
-### P03 Make references clear
+[Back to the principle index](#principle-index)
+
+### P103 Preserve useful voice
+
+**Application.** Preserve perspective, rhythm, metaphor, and the development
+of an experience when they serve an essay's purpose. Use figurative language
+that readers can understand from the passage's context.
+
+**Reason.** An essay can communicate through personal voice and the
+development of an idea as well as through facts.
+
+**Example.**
+
+> The configuration file had become an outdated map: it still listed
+> features that no longer existed.
+
+The explanation makes the metaphor understandable within the passage.
+
+[Back to the principle index](#principle-index)
+
+## 2xx Content
+
+### P201 Give reasons and select background
+
+**Application.** Normally explain the reasons for recommendations,
+evaluations, choices, and interpretations. In documents, normally support
+claims and decisions with reasons.
+
+- Omit reasons when they are already shared or serve no useful role, as
+  in an acknowledgment or a factual list.
+- Add background when readers need it to understand a reason or when the
+  task calls for deeper understanding.
+- Keep enough explanation to avoid a logical gap.
+- Use available evidence; do not invent a reason.
+- For translation, preserve the source under
+  [P702](#p702-edit-and-translate-transparently).
+
+Distinguish these roles according to the question:
+
+| Role | Function |
+| --- | --- |
+| Answer | Respond to the question. |
+| Reason | Explain why the answer holds. |
+| Background | Explain why the reason holds. |
+
+These roles do not prescribe the order of the response. Use
+[P302](#p302-order-information-by-purpose) to choose that order.
+
+**Reason.** Reasons let readers assess an answer. Background can deepen
+understanding, but readers do not always need it.
+
+**Example.** A restart requirement is the answer. Reading the setting only
+at startup is the reason. The design decision behind that behavior is
+background. If the question asks why that design was chosen, the design
+decision becomes part of the answer and its reason.
+
+[Back to the principle index](#principle-index)
+
+### P202 Choose minimal representative examples
+
+**Application.** When choosing examples, especially for parentheses:
+
+- Keep each example relevant to the passage's context.
+- Use only as many examples as the explanation needs.
+- Choose representative examples that most intended readers recognize.
+
+Prefer examples that do not require knowledge of an unusual product or
+case. Use one example when it is enough, and more when a distinction
+requires them. Move substantial explanations out of parentheses.
+
+**Reason.** An example should clarify the point without requiring readers
+to learn unrelated details.
+
+**Example.** In developer documentation, "structured data (such as JSON)"
+can supply one familiar example. A different audience may need an
+explanation of JSON.
+
+[Back to the principle index](#principle-index)
+
+## 3xx Discourse
+
+### P301 Make references clear
 
 **Application.** Use a pronoun when its reference is clear in context.
 Otherwise repeat the noun, even next to another occurrence. Consider the
@@ -109,26 +194,9 @@ The actor is unclear here:
 
 If the server is the actor, replace "It" with "The server."
 
-### P04 Adapt to the reader and task
+[Back to the principle index](#principle-index)
 
-**Application.** Consider what the reader knows and what the text should
-help them do or understand. Assess language proficiency separately from
-subject knowledge. Provide the amount of detail that the task needs.
-Short answers, questions, and progress updates do not need extra sections
-or tables.
-
-When translating, follow [P13](#p13-edit-and-translate-transparently);
-do not add explanations that are absent from the source.
-
-**Reason.** Familiarity with a language, product, or local convention does
-not determine subject knowledge. Extra explanation can help one reader
-while distracting another.
-
-**Example.** For readers who know distributed systems but are less
-familiar with English, keep "idempotent" and simplify the surrounding
-sentences. Do not assume that they need a basic lesson in distributed systems.
-
-### P05 Order information by purpose
+### P302 Order information by purpose
 
 **Application.** Choose the order for each passage according to its purpose.
 
@@ -148,7 +216,9 @@ apply the change," followed by the reason. An explanation of the same
 setting can first describe when the service reads it, then explain why a
 restart is required.
 
-### P06 Connect information
+[Back to the principle index](#principle-index)
+
+### P303 Connect information
 
 **Application.** Use established context to introduce new information.
 Keep the topic easy to follow and make necessary logical relationships
@@ -165,41 +235,9 @@ preceding discussion. Adding an unsupported connection changes the meaning.
 Use "Processing stopped because the file is missing" only when the missing
 file is the established cause.
 
-### P07 Give reasons and select background
+[Back to the principle index](#principle-index)
 
-**Application.** Normally explain the reasons for recommendations,
-evaluations, choices, and interpretations. In documents, normally support
-claims and decisions with reasons.
-
-- Omit reasons when they are already shared or serve no useful role, as
-  in an acknowledgment or a factual list.
-- Add background when readers need it to understand a reason or when the
-  task calls for deeper understanding.
-- Keep enough explanation to avoid a logical gap.
-- Use available evidence; do not invent a reason.
-- For translation, preserve the source under
-  [P13](#p13-edit-and-translate-transparently).
-
-Distinguish these roles according to the question:
-
-| Role | Function |
-| --- | --- |
-| Answer | Respond to the question. |
-| Reason | Explain why the answer holds. |
-| Background | Explain why the reason holds. |
-
-These roles do not prescribe the order of the response. Use
-[P05](#p05-order-information-by-purpose) to choose that order.
-
-**Reason.** Reasons let readers assess an answer. Background can deepen
-understanding, but readers do not always need it.
-
-**Example.** A restart requirement is the answer. Reading the setting only
-at startup is the reason. The design decision behind that behavior is
-background. If the question asks why that design was chosen, the design
-decision becomes part of the answer and its reason.
-
-### P08 Match form to logical structure
+### P304 Match form to logical structure
 
 **Application.** Choose the form that makes the relationships easy to follow.
 
@@ -228,7 +266,11 @@ actions, and details belong together.
 The first sentence groups two actions under one condition. The second
 adds two details about the error.
 
-### P09 Express actions with verbs
+[Back to the principle index](#principle-index)
+
+## 4xx Sentence
+
+### P401 Express actions with verbs
 
 **Application.** Express actions directly with verbs where possible.
 Avoid unnecessary nominalization: expressing an action as a noun when a
@@ -242,7 +284,32 @@ adding meaning.
 performs validation of the request." Keep "The server cancels validation":
 cancellation is the action, and validation is its object.
 
-### P10 Respect technical meaning
+[Back to the principle index](#principle-index)
+
+## 5xx Lexicon
+
+### P501 Keep terms consistent
+
+**Application.** Use the same term for the same concept throughout the
+text, including objects and actions. Keep different concepts distinct.
+Respect established technical terms and exact product or project names.
+Do not introduce synonyms merely to avoid repetition.
+
+Use pronouns under [P301](#p301-make-references-clear) and related noun and
+verb forms under [P401](#p401-express-actions-with-verbs) when they preserve
+the same concept.
+
+**Reason.** A different term can suggest a different concept, making
+readers check whether the meaning has changed.
+
+**Example.** If "request" and "message" name the same object, use "request"
+in both sentences:
+
+> The client sends a request. The server validates the request.
+
+[Back to the principle index](#principle-index)
+
+### P502 Respect technical meaning
 
 **Application.** Use established terms for technical concepts and preserve
 their specific meanings. Improve readability first by simplifying the
@@ -253,7 +320,7 @@ where available.
 
 Add a definition, explanation, or example when the reader's knowledge and
 the passage's purpose call for it. When translating, follow
-[P13](#p13-edit-and-translate-transparently); do not add explanations that
+[P702](#p702-edit-and-translate-transparently); do not add explanations that
 are absent from the source.
 
 **Reason.** An easier word may broaden a technical meaning or erase a
@@ -266,42 +333,33 @@ If readers need an explanation, write:
 > This operation is idempotent: repeating it has the same effect as
 > performing it once.
 
-### P11 Choose minimal representative examples
+[Back to the principle index](#principle-index)
 
-**Application.** When choosing examples, especially for parentheses:
+## 7xx Change
 
-- Keep each example relevant to the passage's context.
-- Use only as many examples as the explanation needs.
-- Choose representative examples that most intended readers recognize.
+### P701 Preserve meaning
 
-Prefer examples that do not require knowledge of an unusual product or
-case. Use one example when it is enough, and more when a distinction
-requires them. Move substantial explanations out of parentheses.
+**Application.** Preserve the intended meaning and logical structure,
+including:
 
-**Reason.** An example should clarify the point without requiring readers
-to learn unrelated details.
+- The relationship between main points and supporting details.
+- The scope of conditions and exceptions.
+- Quantities and uncertainty.
+- The strength of claims and requirements.
 
-**Example.** In developer documentation, "structured data (such as JSON)"
-can supply one familiar example. A different audience may need an
-explanation of JSON.
+Give these relationships and distinctions priority over brevity and
+grammatical preferences. Use [P702](#p702-edit-and-translate-transparently)
+to decide when a deliberate change needs explanation or confirmation.
 
-### P12 Preserve useful voice
+**Reason.** An edit can retain the same facts while changing what a claim
+means or how much weight a supporting detail receives.
 
-**Application.** Preserve perspective, rhythm, metaphor, and the development
-of an experience when they serve an essay's purpose. Use figurative language
-that readers can understand from the passage's context.
+**Example.** Keep "may fail" when failure is uncertain. Changing it to
+"will fail" makes the claim stronger.
 
-**Reason.** An essay can communicate through personal voice and the
-development of an idea as well as through facts.
+[Back to the principle index](#principle-index)
 
-**Example.**
-
-> The configuration file had become an outdated map: it still listed
-> features that no longer existed.
-
-The explanation makes the metaphor understandable within the passage.
-
-### P13 Edit and translate transparently
+### P702 Edit and translate transparently
 
 **Application.** Improve wording, word order, and presentation. Split or
 join sentences only where a sentence would otherwise be hard to read, and
@@ -329,10 +387,52 @@ interpret the text. Authors need visibility into those changes.
 the edit. Changing "Save after validation" to "Save only if validation
 succeeds" adds a condition and requires confirmation of the intended meaning.
 
+[Back to the principle index](#principle-index)
+
 ## Maintain the principles
 
-Keep each ID stable. Update an index entry and its linked section together.
-Use an unused ID for a new principle.
+An ID is a letter and three digits, such as `P302`. The letter names the
+language the principle applies to, and the first digit names the level: the
+smallest span of text a reader needs to tell whether the principle is
+followed.
+
+| Letter | Applies to |
+| --- | --- |
+| P | Every language |
+| E | English text |
+| J | Japanese text |
+
+| IDs | Level | Span |
+| --- | --- | --- |
+| 1xx | Frame | The whole text and the relationship among writer, reader, and editor |
+| 2xx | Content | The information the text includes |
+| 3xx | Discourse | Several sentences |
+| 4xx | Sentence | One sentence |
+| 5xx | Lexicon | One word or phrase |
+| 6xx | Orthography | Characters and symbols |
+| 7xx | Change | The text before and after an edit, or a source and its translation |
+
+A principle that requires consistency, such as P501, is judged across the
+whole text, wider than the span of its level. Classify such a principle by
+the unit it keeps consistent instead: a term belongs to 5xx, a spelling to
+6xx.
+
+An ID names the principle's scope: what the principle is about. Revising
+how the principle handles that scope keeps the ID, even when the heading
+changes. Changing the scope retires the ID and assigns a new one. Give a
+new principle the number after the highest one assigned so far within its
+level, so that a retired number stays taken, and never renumber an existing
+principle; gaps are expected. Update an index entry and its section
+together.
+
+Record a retired ID of any letter in the table below. Successor names the
+principle that took over the scope at retirement, or `—` when none did.
+Note states the reason in one sentence. Never reuse a retired ID, and do
+not revise the table later: a principle added afterwards is a new
+principle, whatever its resemblance to a retired one.
+
+| Retired ID | Successor | Note |
+| --- | --- | --- |
 
 ## Foundations
 

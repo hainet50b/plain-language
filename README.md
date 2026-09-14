@@ -13,10 +13,10 @@ existing text as well as the text it produces, and they leave out
 conventional writing advice that backfires when agents follow it. They do
 not claim compliance with a formal plain-language standard.
 
-This repository also holds the tools that maintain the skill: a skill that
-captures unnatural expressions as they appear in conversation, a skill that
-resolves them by changing the principles, and the evals that show how the
-current model behaves under the current principles.
+This repository also holds the tools that maintain the skill. One runs a
+prompt with and without the skill and shows the replies side by side. Another records an unnatural expression that a reader noticed in a
+reply, with the prompt that produced it, so that the maintainers can fix
+the principles.
 
 ## Contents
 
@@ -25,9 +25,10 @@ current model behaves under the current principles.
 | [plain-language/SKILL.md](plain-language/SKILL.md) | The shared principles, each with an ID, application guidance, a reason, and an example. |
 | [plain-language/references/english.md](plain-language/references/english.md) | Principles for English text that the agent produces or reviews. |
 | [plain-language/references/japanese.md](plain-language/references/japanese.md) | Principles for Japanese text that the agent produces or reviews. |
-| plain-language-capture/ | Skill that turns an unnatural expression noticed in a conversation into a case. Planned. |
-| plain-language-resolve/ | Skill that diagnoses a case, changes the principles, and confirms the change with evals. Planned. |
-| evals/ | Cases, checks, and results. Its README describes the case format, the terms, and how to run the cases. Planned. |
+| [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, or under two versions of it, and shows the replies side by side. |
+| plain-language-report/ | Skill that records an unnatural expression noticed in a reply as a report, by asking the reader a few questions. Planned. |
+| evals/ | The comparisons and reports worth keeping. They serve as the regression suite and as evidence of what the skill does. Planned. |
+| [scripts/validate.py](scripts/validate.py) | Checks that the principle files agree with themselves: IDs, index rows, levels, links, and the retired table. |
 
 ## Installation
 

@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>plain-language comparison</title>
+<style>
+  :root {
+    --ink: #1f2328;
+    --muted: #59636e;
+    --line: #d0d7de;
+    --panel: #f6f8fa;
+    --pane-a: #f4f6f9;
+    --pane-b: #eaeef3;
+    --pane-header: #d9e0e8;
+    --accent: #0969da;
+    --error: #cf222e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: #ffffff;
+    font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans CJK JP", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  header {
+    padding: 20px 28px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  header h1 { margin: 0 0 10px; font-size: 20px; font-weight: 600; }
+  .prompt-box {
+    margin: 0 0 14px;
+    padding: 8px 14px 10px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    background: var(--panel);
+  }
+  .prompt-box .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .prompt .first-line { font-size: 17px; font-weight: 600; }
+  details.prompt summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  details.prompt summary::-webkit-details-marker { display: none; }
+  details.prompt summary::after {
+    content: "show all";
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  details.prompt[open] summary::after { content: "hide"; }
+  details.prompt pre {
+    white-space: pre-wrap;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin: 8px 0 0;
+    font-family: inherit;
+  }
+  details.prompt .source-label { font-weight: 600; margin-top: 8px; }
+  .about-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 2px;
+  }
+  table.about { border-collapse: collapse; font-size: 13px; }
+  table.about th, table.about td {
+    text-align: left;
+    padding: 3px 14px 3px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.about th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .toolbar {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .toolbar .group { display: flex; align-items: center; gap: 6px; }
+  button.chip {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 2px 12px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  main {
+    display: grid;
+    grid-template-columns: repeat(var(--pane-count), minmax(0, 1fr)) 44px;
+  }
+  .pane { border-right: 1px solid var(--line); min-width: 0; background: var(--pane-a); }
+  .pane:nth-child(even) { background: var(--pane-b); }
+  .pane-header {
+    position: sticky;
+    top: 0;
+    background: var(--pane-header);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 20px 8px;
+    z-index: 1;
+  }
+  .pane-header .selectors { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; }
+  .pane-header .field { display: flex; flex-direction: column; gap: 2px; }
+  .pane-header .field .caption {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pane-header select {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 3px 8px;
+    max-width: 100%;
+  }
+  .pane-header select.sample { font-weight: 400; }
+  .pane-header .close {
+    margin-left: auto;
+    align-self: flex-start;
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  .pane-header .stats { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .add-pane {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  .add-pane button {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--panel);
+    color: var(--ink);
+    font: inherit;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .sample { padding: 16px 20px 40px; overflow-wrap: anywhere; }
+  .sample .failure { color: var(--error); white-space: pre-wrap; }
+  .sample h1, .sample h2, .sample h3, .sample h4 { line-height: 1.35; margin: 1.4em 0 0.5em; }
+  .sample h1 { font-size: 1.35em; } .sample h2 { font-size: 1.2em; } .sample h3 { font-size: 1.05em; }
+  .sample h1:first-child, .sample h2:first-child { margin-top: 0; }
+  .sample pre {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    font-size: 13px;
+  }
+  .sample code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.92em; }
+  .sample :not(pre) > code { background: #ffffff; padding: 1px 5px; border-radius: 4px; }
+  .sample table { border-collapse: collapse; margin: 0.6em 0; display: block; overflow-x: auto; }
+  .sample th, .sample td { border: 1px solid var(--line); padding: 4px 10px; text-align: left; }
+  .sample th, .sample td { background: #ffffff; }
+  .sample th { font-weight: 600; }
+  .sample blockquote { margin: 0.6em 0; padding: 0 12px; border-left: 3px solid var(--line); color: var(--muted); }
+  .sample img { max-width: 100%; }
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+    .pane { border-right: none; border-bottom: 1px solid var(--line); }
+    .add-pane { position: static; padding: 10px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>plain-language comparison</h1>
+  <div class="prompt-box"><div class="label">Prompt</div><div id="prompt"></div></div>
+  <div class="about-label">Setup</div>
+  <table class="about" id="about"></table>
+  <div class="toolbar">
+    <div class="group" id="sample-buttons"><span>Sample in every pane:</span></div>
+  </div>
+</header>
+<main id="panes"></main>
+
+<script>
+__MARKED_JS__
+</script>
+<script>
+const comparison = __COMPARISON_JSON__;
+const promptTexts = __PROMPT_JSON__;
+const sampleTexts = __SAMPLES_JSON__;
+
+// A cell is one set of principles under one model. Panes show one sample of
+// one cell each; the reader arranges the panes.
+const cells = [];
+for (const model of comparison.models) {
+  for (const principles of comparison.principles) {
+    cells.push({ modelLabel: model.label, principles: principles });
+  }
+}
+const oneModel = comparison.models.length === 1;
+// A pane can also show the source text the prompt works on, when there is one.
+const SOURCE_PANE = -1;
+const hasSource = Boolean(promptTexts.source);
+let panes = [];
+
+function isSourcePane(pane) {
+  return pane.cell === SOURCE_PANE;
+}
+
+function cellNumberOf(modelLabel, principlesName) {
+  return cells.findIndex(cell => cell.modelLabel === modelLabel && cell.principles.name === principlesName);
+}
+
+function samplesOf(cell) {
+  return comparison.samples
+    .filter(sample => sample.model_label === cell.modelLabel && sample.principles === cell.principles.name)
+    .sort((left, right) => left.index - right.index);
+}
+
+function sampleText(cell, index) {
+  const byPrinciples = sampleTexts[cell.modelLabel] || {};
+  const byIndex = byPrinciples[cell.principles.name] || {};
+  return byIndex[String(index)] || "";
+}
+
+function maxSampleIndex() {
+  let highest = 0;
+  for (const sample of comparison.samples) {
+    if (sample.index > highest) highest = sample.index;
+  }
+  return highest;
+}
+
+function shortCommit(value) {
+  if (typeof value !== "string") return "";
+  return value.slice(0, 7);
+}
+
+function describeOrigin(principles) {
+  const origin = principles.origin || {};
+  switch (origin.kind) {
+    case "none": return "no principles";
+    case "worktree": {
+      const edits = origin.has_uncommitted_changes ? ", with uncommitted edits" : "";
+      return origin.path + " at " + shortCommit(origin.head) + edits;
+    }
+    case "git": return origin.repository + " at " + shortCommit(origin.commit);
+    default: return origin.path || principles.name;
+  }
+}
+
+function modelsUsed(modelLabel) {
+  const used = new Set();
+  for (const sample of comparison.samples) {
+    if (sample.model_label === modelLabel && sample.model) used.add(sample.model);
+  }
+  return Array.from(used);
+}
+
+function formatStats(sample) {
+  if (sample.is_error) return "failed";
+  const parts = [];
+  if (typeof sample.duration_ms === "number") parts.push((sample.duration_ms / 1000).toFixed(1) + " s");
+  if (typeof sample.cost_usd === "number") parts.push("$" + sample.cost_usd.toFixed(3));
+  const usage = sample.usage || {};
+  if (typeof usage.output_tokens === "number") parts.push(usage.output_tokens + " output tokens");
+  if (typeof usage.cache_read_input_tokens === "number" && usage.cache_read_input_tokens > 0) parts.push("cache read");
+  return parts.join(" · ");
+}
+
+function promptFirstLine() {
+  return promptTexts.prompt.split("\n")[0];
+}
+
+function renderPrompt() {
+  const container = document.getElementById("prompt");
+  const lines = promptTexts.prompt.split("\n");
+  const hasMore = lines.length > 1 || Boolean(promptTexts.source);
+  if (!hasMore) {
+    const line = document.createElement("div");
+    line.className = "prompt first-line";
+    line.textContent = lines[0];
+    container.appendChild(line);
+    return;
+  }
+  const details = document.createElement("details");
+  details.className = "prompt";
+  const summary = document.createElement("summary");
+  summary.textContent = lines[0];
+  details.appendChild(summary);
+  const promptText = document.createElement("pre");
+  promptText.textContent = promptTexts.prompt;
+  details.appendChild(promptText);
+  if (promptTexts.source) {
+    const sourceLabel = document.createElement("div");
+    sourceLabel.className = "source-label";
+    sourceLabel.textContent = "Source";
+    details.appendChild(sourceLabel);
+    const sourceText = document.createElement("pre");
+    sourceText.textContent = promptTexts.source;
+    details.appendChild(sourceText);
+  }
+  container.appendChild(details);
+}
+
+function addAboutRow(table, title, lines) {
+  const row = document.createElement("tr");
+  const heading = document.createElement("th");
+  heading.textContent = title;
+  const value = document.createElement("td");
+  for (const line of lines) {
+    const div = document.createElement("div");
+    div.textContent = line;
+    value.appendChild(div);
+  }
+  row.appendChild(heading);
+  row.appendChild(value);
+  table.appendChild(row);
+}
+
+// The rows follow the order of the script's options: prompt, principles, agent.
+function renderAbout() {
+  const table = document.getElementById("about");
+  addAboutRow(table, "Created", [comparison.created_at]);
+  if (comparison.prompt.report) addAboutRow(table, "Report", [comparison.prompt.report]);
+  addAboutRow(table, "Principles", comparison.principles.map(principles => principles.name + " — " + describeOrigin(principles)));
+  const agent = comparison.agent || {};
+  if (agent.name) addAboutRow(table, "Agent", [agent.name + (agent.version ? " " + agent.version : "")]);
+  addAboutRow(table, "Models", comparison.models.map(model => {
+    const used = modelsUsed(model.label);
+    return model.label + (used.length ? " → " + used.join(", ") : "");
+  }));
+  addAboutRow(table, "Effort", [comparison.effort]);
+}
+
+function renderSampleButtons() {
+  const group = document.getElementById("sample-buttons");
+  for (let index = 1; index <= maxSampleIndex(); index++) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chip";
+    button.textContent = String(index);
+    button.addEventListener("click", () => {
+      for (const pane of panes) {
+        if (isSourcePane(pane)) continue;
+        const cell = cells[pane.cell];
+        if (samplesOf(cell).some(sample => sample.index === index)) pane.index = index;
+      }
+      renderPanes();
+    });
+    group.appendChild(button);
+  }
+}
+
+function renderSampleBody(container, cell, sample) {
+  container.innerHTML = "";
+  if (!sample) {
+    container.textContent = "No sample.";
+    return;
+  }
+  if (sample.is_error) {
+    const failure = document.createElement("div");
+    failure.className = "failure";
+    failure.textContent = "This sample failed.\n" + (sample.error || "");
+    container.appendChild(failure);
+    return;
+  }
+  container.innerHTML = marked.parse(sampleText(cell, sample.index), { gfm: true, breaks: false });
+}
+
+function makeField(caption, select) {
+  const field = document.createElement("div");
+  field.className = "field";
+  const label = document.createElement("div");
+  label.className = "caption";
+  label.textContent = caption;
+  field.appendChild(label);
+  field.appendChild(select);
+  return field;
+}
+
+function makeSelect(className, title, options, selectedValue, onChange) {
+  const select = document.createElement("select");
+  select.className = className;
+  select.title = title;
+  for (const candidate of options) {
+    const option = document.createElement("option");
+    option.value = candidate.value;
+    option.textContent = candidate.text;
+    option.selected = candidate.value === selectedValue;
+    select.appendChild(option);
+  }
+  select.addEventListener("change", () => onChange(select.value));
+  return select;
+}
+
+function principlesOptions() {
+  const options = comparison.principles.map(principles => ({ value: principles.name, text: principles.name }));
+  if (hasSource) options.unshift({ value: "source", text: "source" });
+  return options;
+}
+
+function makeCloseButton(paneNumber) {
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "close";
+  close.title = "Close this pane";
+  close.textContent = "×";
+  close.addEventListener("click", () => {
+    panes.splice(paneNumber, 1);
+    renderPanes();
+  });
+  return close;
+}
+
+function renderSourcePane(pane, paneNumber) {
+  const section = document.createElement("section");
+  section.className = "pane";
+  const header = document.createElement("div");
+  header.className = "pane-header";
+  const selectors = document.createElement("div");
+  selectors.className = "selectors";
+  selectors.appendChild(makeField("Principles", makeSelect("principles", "Principles shown in this pane", principlesOptions(), "source", value => {
+    movePaneToCell(pane, comparison.models[0].label, value);
+    renderPanes();
+  })));
+  if (panes.length > 1) selectors.appendChild(makeCloseButton(paneNumber));
+  header.appendChild(selectors);
+  const stats = document.createElement("div");
+  stats.className = "stats";
+  stats.textContent = "the source text the prompt works on";
+  header.appendChild(stats);
+  const body = document.createElement("div");
+  body.className = "sample";
+  body.innerHTML = marked.parse(promptTexts.source, { gfm: true, breaks: false });
+  section.appendChild(header);
+  section.appendChild(body);
+  return section;
+}
+
+function movePaneToCell(pane, modelLabel, principlesName) {
+  if (principlesName === "source" && hasSource) {
+    pane.cell = SOURCE_PANE;
+    return;
+  }
+  const cellNumber = cellNumberOf(modelLabel, principlesName);
+  if (cellNumber < 0) return;
+  pane.cell = cellNumber;
+  const available = samplesOf(cells[cellNumber]);
+  if (!available.some(candidate => candidate.index === pane.index) && available.length > 0) pane.index = available[0].index;
+}
+
+function renderPane(pane, paneNumber) {
+  if (isSourcePane(pane)) return renderSourcePane(pane, paneNumber);
+  const cell = cells[pane.cell];
+  const samples = samplesOf(cell);
+  const sample = samples.find(candidate => candidate.index === pane.index);
+
+  const section = document.createElement("section");
+  section.className = "pane";
+
+  const header = document.createElement("div");
+  header.className = "pane-header";
+  const selectors = document.createElement("div");
+  selectors.className = "selectors";
+
+  selectors.appendChild(makeField("Principles", makeSelect("principles", "Principles shown in this pane", principlesOptions(), cell.principles.name, value => {
+    movePaneToCell(pane, cell.modelLabel, value);
+    renderPanes();
+  })));
+
+  if (!oneModel) {
+    const modelOptions = comparison.models.map(model => ({ value: model.label, text: model.label }));
+    selectors.appendChild(makeField("Model", makeSelect("model", "Model shown in this pane", modelOptions, cell.modelLabel, value => {
+      movePaneToCell(pane, value, cell.principles.name);
+      renderPanes();
+    })));
+  }
+
+  const sampleOptions = samples.map(candidate => ({
+    value: String(candidate.index),
+    text: String(candidate.index) + (candidate.is_error ? " (failed)" : ""),
+  }));
+  selectors.appendChild(makeField("Sample", makeSelect("sample", "Sample shown in this pane", sampleOptions, String(pane.index), value => {
+    pane.index = Number(value);
+    renderPanes();
+  })));
+
+  if (panes.length > 1) selectors.appendChild(makeCloseButton(paneNumber));
+  header.appendChild(selectors);
+
+  const stats = document.createElement("div");
+  stats.className = "stats";
+  stats.textContent = sample ? formatStats(sample) : "";
+  header.appendChild(stats);
+
+  const body = document.createElement("div");
+  body.className = "sample";
+  renderSampleBody(body, cell, sample);
+
+  section.appendChild(header);
+  section.appendChild(body);
+  return section;
+}
+
+function renderAddPane() {
+  const holder = document.createElement("div");
+  holder.className = "add-pane";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.title = "Add a pane";
+  button.textContent = "+";
+  button.addEventListener("click", () => {
+    const last = panes[panes.length - 1] || { cell: 0, index: 1 };
+    const samples = isSourcePane(last) ? [] : samplesOf(cells[last.cell]);
+    const next = samples.find(sample => sample.index > last.index);
+    panes.push({ cell: last.cell, index: next ? next.index : last.index });
+    renderPanes();
+  });
+  holder.appendChild(button);
+  return holder;
+}
+
+function renderPanes() {
+  const main = document.getElementById("panes");
+  main.innerHTML = "";
+  main.style.setProperty("--pane-count", String(panes.length));
+  panes.forEach((pane, paneNumber) => main.appendChild(renderPane(pane, paneNumber)));
+  main.appendChild(renderAddPane());
+  writeArrangementToHash();
+}
+
+function defaultPanes() {
+  const defaults = cells.map((cell, cellNumber) => {
+    const samples = samplesOf(cell);
+    return { cell: cellNumber, index: samples.length ? samples[0].index : 1 };
+  });
+  if (hasSource) defaults.unshift({ cell: SOURCE_PANE, index: 0 });
+  return defaults;
+}
+
+// The arrangement lives in the URL fragment as
+// "model,principles,index;model,principles,index", each label URI-encoded,
+// with "source" for a pane that shows the source text, so that a link can
+// carry a particular way of reading the comparison.
+function writeArrangementToHash() {
+  const parts = panes.map(pane => {
+    if (isSourcePane(pane)) return "source";
+    const cell = cells[pane.cell];
+    return [encodeURIComponent(cell.modelLabel), encodeURIComponent(cell.principles.name), pane.index].join(",");
+  });
+  history.replaceState(null, "", "#" + parts.join(";"));
+}
+
+function readArrangementFromHash() {
+  const hash = location.hash.replace(/^#/, "");
+  if (hash === "") return null;
+  const read = [];
+  for (const part of hash.split(";")) {
+    if (part === "source" && hasSource) {
+      read.push({ cell: SOURCE_PANE, index: 0 });
+      continue;
+    }
+    const fields = part.split(",");
+    if (fields.length !== 3) continue;
+    const cellNumber = cellNumberOf(decodeURIComponent(fields[0]), decodeURIComponent(fields[1]));
+    const index = Number(fields[2]);
+    if (cellNumber < 0 || !Number.isInteger(index)) continue;
+    read.push({ cell: cellNumber, index: index });
+  }
+  return read.length ? read : null;
+}
+
+document.title = promptFirstLine().slice(0, 60) + " — plain-language comparison";
+renderPrompt();
+renderAbout();
+renderSampleButtons();
+panes = readArrangementFromHash() || defaultPanes();
+renderPanes();
+</script>
+</body>
+</html>

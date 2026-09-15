@@ -3,7 +3,7 @@ name: plain-language-report
 license: MIT OR Apache-2.0
 description: >-
   Record an expression in a reply that feels unnatural to a reader as a
-  report, with the prompt that produced it, so that the maintainers can fix
+  report, with the prompt that produces it, so that the maintainers can fix
   the plain-language skill. Use when the user points at an unnatural
   expression in a reply, says how replies should be worded, or asks to
   list, show, or import reports.

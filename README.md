@@ -25,7 +25,7 @@ the principles.
 | [plain-language/SKILL.md](plain-language/SKILL.md) | The shared principles, each with an ID, application guidance, a reason, and an example. |
 | [plain-language/references/english.md](plain-language/references/english.md) | Principles for English text that the agent produces or reviews. |
 | [plain-language/references/japanese.md](plain-language/references/japanese.md) | Principles for Japanese text that the agent produces or reviews. |
-| [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, or under two versions of it, and shows the replies side by side. |
+| [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, across versions of it, or across models, and shows the replies side by side. |
 | plain-language-report/ | Skill that records an unnatural expression noticed in a reply as a report, by asking the reader a few questions. Planned. |
 | evals/ | The comparisons and reports worth keeping. They serve as the regression suite and as evidence of what the skill does. Planned. |
 | [scripts/validate.py](scripts/validate.py) | Checks that the principle files agree with themselves: IDs, index rows, levels, links, and the retired table. |

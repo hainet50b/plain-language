@@ -229,7 +229,6 @@ for (const model of comparison.models) {
     cells.push({ modelLabel: model.label, principles: principles });
   }
 }
-const oneModel = comparison.models.length === 1;
 // A pane can also show the source text the prompt works on, when there is one.
 const SOURCE_PANE = -1;
 const hasSource = Boolean(promptTexts.source);
@@ -268,17 +267,19 @@ function shortCommit(value) {
   return value.slice(0, 7);
 }
 
-function describeOrigin(principles) {
-  const origin = principles.origin || {};
-  switch (origin.kind) {
-    case "none": return "no principles";
-    case "worktree": {
-      const edits = origin.has_uncommitted_changes ? ", with uncommitted edits" : "";
-      return origin.path + " at " + shortCommit(origin.head) + edits;
-    }
-    case "git": return origin.repository + " at " + shortCommit(origin.commit);
-    default: return origin.path || principles.name;
+function describePrinciples(principles) {
+  if (principles.kind === "none") return "no principles";
+  const parts = [];
+  if (principles.kind === "git") {
+    parts.push("git " + shortCommit(principles.commit));
+  } else if (principles.kind === "worktree") {
+    const edits = principles.uncommitted ? " with uncommitted edits" : "";
+    parts.push("worktree at " + shortCommit(principles.base_commit) + edits);
+  } else {
+    parts.push(principles.kind);
   }
+  if (principles.sha256) parts.push("sha256 " + shortCommit(principles.sha256));
+  return parts.join(" · ");
 }
 
 function modelsUsed(modelLabel) {
@@ -355,7 +356,7 @@ function renderAbout() {
   const table = document.getElementById("about");
   addAboutRow(table, "Created", [comparison.created_at]);
   if (comparison.prompt.report) addAboutRow(table, "Report", [comparison.prompt.report]);
-  addAboutRow(table, "Principles", comparison.principles.map(principles => principles.name + " — " + describeOrigin(principles)));
+  addAboutRow(table, "Principles", comparison.principles.map(principles => principles.name + " — " + describePrinciples(principles)));
   const agent = comparison.agent || {};
   if (agent.name) addAboutRow(table, "Agent", [agent.name + (agent.version ? " " + agent.version : "")]);
   addAboutRow(table, "Models", comparison.models.map(model => {
@@ -501,13 +502,11 @@ function renderPane(pane, paneNumber) {
     renderPanes();
   })));
 
-  if (!oneModel) {
-    const modelOptions = comparison.models.map(model => ({ value: model.label, text: model.label }));
-    selectors.appendChild(makeField("Model", makeSelect("model", "Model shown in this pane", modelOptions, cell.modelLabel, value => {
-      movePaneToCell(pane, value, cell.principles.name);
-      renderPanes();
-    })));
-  }
+  const modelOptions = comparison.models.map(model => ({ value: model.label, text: model.label }));
+  selectors.appendChild(makeField("Model", makeSelect("model", "Model shown in this pane", modelOptions, cell.modelLabel, value => {
+    movePaneToCell(pane, value, cell.principles.name);
+    renderPanes();
+  })));
 
   const sampleOptions = samples.map(candidate => ({
     value: String(candidate.index),

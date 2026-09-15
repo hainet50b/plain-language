@@ -36,8 +36,6 @@ A comparison is one directory with these files:
 ├── prompt/
 │   ├── prompt.md           the instruction
 │   └── source.md           the source text, when there is one
-├── principles/
-│   └── installed.md        the exact text given to the model as those principles
 └── samples/
     ├── none.default/       one directory per set of principles and model
     │   ├── 1.md            one sample
@@ -58,14 +56,14 @@ on its own. The script needs:
   command.
 
 For each sample, the script runs the command below, with the prompt on
-standard input. The principles go into the system prompt, which applies
-them more firmly than loading the skill during a conversation does; with
-`none`, the last option is left out.
+standard input. The principles go into the system prompt through a
+temporary file, which applies them more firmly than loading the skill during
+a conversation does; with `none`, the last option is left out.
 
 ```sh
 claude -p --tools "" --effort high --output-format json --no-session-persistence \
   --model opus \
-  --append-system-prompt-file principles/installed.md
+  --append-system-prompt-file <temporary file holding the principles>
 ```
 
 The script writes the comparison to `~/.plain-language/comparisons/`.
@@ -178,7 +176,7 @@ principles:
 index.html#source;default,installed,1
 ```
 
-When the user asks to keep a comparison, move its directory into
+When the user asks to keep a comparison, copy its directory into
 `evals/comparisons/` in a checkout of the plain-language repository, and
 drop the `-2` or `-3` suffix from its name as you do. When the comparison
 was made from a report, the plain-language-report skill says how to record

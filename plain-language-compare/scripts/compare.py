@@ -14,6 +14,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor
@@ -27,7 +28,7 @@ MARKED_FILE = SKILL_DIRECTORY / "assets" / "marked.umd.js"
 PRINCIPLES_SKILL_NAME = "plain-language"
 PRINCIPLES_DIRECTORY_IN_REPOSITORY = "plain-language"
 PRINCIPLES_MAIN_FILE = "SKILL.md"
-COMPARISON_FORMAT_VERSION = 2
+COMPARISON_FORMAT_VERSION = 3
 
 # The Agent Skills specification places a skill's reference files under
 # references/, so only SKILL.md and that directory count as principles.
@@ -98,15 +99,13 @@ class PrincipleFile:
     path: str
     content: str
 
-    def sha256(self) -> str:
-        return sha256_of_text(self.content)
-
 
 @dataclass
 class Principles:
     name: str
     origin: dict
     files: list[PrincipleFile]
+    location: str
 
     def has_text(self) -> bool:
         return len(self.files) > 0
@@ -143,7 +142,6 @@ class Sample:
     duration_api_ms: int | None = None
     cost_usd: float | None = None
     usage: dict = field(default_factory=dict)
-    session_id: str | None = None
     text: str = ""
 
 
@@ -294,7 +292,7 @@ def require_unique(values: list[str], kind: str) -> None:
 
 def resolve_principles(name: str, repository: Path | None) -> Principles:
     if name == "none":
-        return Principles(name=name, origin={"kind": "none"}, files=[])
+        return Principles(name=name, origin={"kind": "none"}, files=[], location="")
     if name == "installed":
         return resolve_installed_principles(name)
     if name.startswith("dir:"):
@@ -311,8 +309,8 @@ def resolve_installed_principles(name: str) -> Principles:
     if skill_directory is None:
         searched = ", ".join(str(parent / PRINCIPLES_SKILL_NAME) for parent in INSTALLED_SKILL_PARENTS)
         raise UsageError(f"the {PRINCIPLES_SKILL_NAME} skill is not installed; looked in {searched}")
-    origin = {"kind": "installed", "path": str(skill_directory)}
-    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(skill_directory))
+    origin = {"kind": "installed"}
+    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(skill_directory), location=str(skill_directory))
 
 
 def find_installed_skill_directory() -> Path | None:
@@ -326,8 +324,8 @@ def find_installed_skill_directory() -> Path | None:
 def resolve_directory_principles(name: str, directory: Path) -> Principles:
     if not (directory / PRINCIPLES_MAIN_FILE).is_file():
         raise UsageError(f"{directory} has no {PRINCIPLES_MAIN_FILE}")
-    origin = {"kind": "directory", "path": str(directory.resolve())}
-    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(directory))
+    origin = {"kind": "directory"}
+    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(directory), location=str(directory.resolve()))
 
 
 def resolve_worktree_principles(name: str, repository: Path) -> Principles:
@@ -336,13 +334,8 @@ def resolve_worktree_principles(name: str, repository: Path) -> Principles:
         raise UsageError(f"{repository} has no {PRINCIPLES_DIRECTORY_IN_REPOSITORY}/{PRINCIPLES_MAIN_FILE}")
     head_commit = run_git(repository, ["rev-parse", "HEAD"]).strip()
     status = run_git(repository, ["status", "--porcelain", "--", PRINCIPLES_DIRECTORY_IN_REPOSITORY])
-    origin = {
-        "kind": "worktree",
-        "path": str(principles_directory.resolve()),
-        "head": head_commit,
-        "has_uncommitted_changes": status.strip() != "",
-    }
-    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(principles_directory))
+    origin = {"kind": "worktree", "base_commit": head_commit, "uncommitted": status.strip() != ""}
+    return Principles(name=name, origin=origin, files=read_principle_files_from_directory(principles_directory), location=str(principles_directory.resolve()))
 
 
 def resolve_git_ref_principles(name: str, repository: Path) -> Principles:
@@ -360,8 +353,8 @@ def resolve_git_ref_principles(name: str, repository: Path) -> Principles:
         files.append(PrincipleFile(path=relative_path, content=content))
     if not files:
         raise UsageError(f"{name} has no principle files under {PRINCIPLES_DIRECTORY_IN_REPOSITORY}/")
-    origin = {"kind": "git", "repository": str(repository.resolve()), "commit": commit}
-    return Principles(name=name, origin=origin, files=files)
+    origin = {"kind": "git", "commit": commit}
+    return Principles(name=name, origin=origin, files=files, location=str(repository.resolve()))
 
 
 def run_git(repository: Path, git_arguments: list[str]) -> str:
@@ -472,7 +465,6 @@ def fill_sample_from_result(sample: Sample, result: dict) -> None:
     sample.duration_ms = result.get("duration_ms")
     sample.duration_api_ms = result.get("duration_api_ms")
     sample.cost_usd = result.get("total_cost_usd")
-    sample.session_id = result.get("session_id")
     sample.usage = select_usage_fields(result.get("usage", {}))
     sample.model = first_model_used(result.get("modelUsage", {}))
     result_text = result.get("result")
@@ -555,22 +547,23 @@ def write_prompt_files(prompt: Prompt, comparison_directory: Path) -> dict:
     prompt_directory = comparison_directory / "prompt"
     prompt_directory.mkdir(exist_ok=True)
     (prompt_directory / "prompt.md").write_text(prompt.text, encoding="utf-8", newline="\n")
-    described = {"file": "prompt/prompt.md", "source_file": None, "report": prompt.report_file}
+    report_name = None
+    if prompt.report_file is not None:
+        report_name = Path(prompt.report_file).name
+    described = {"file": "prompt/prompt.md", "source_file": None, "report": report_name}
     if prompt.source is not None:
         (prompt_directory / "source.md").write_text(prompt.source, encoding="utf-8", newline="\n")
         described["source_file"] = "prompt/source.md"
     return described
 
 
-def write_principles_texts(principles_list: list[Principles], comparison_directory: Path) -> dict[str, Path | None]:
+def write_principles_texts(principles_list: list[Principles], temporary_directory: Path) -> dict[str, Path | None]:
     text_files: dict[str, Path | None] = {}
     for principles in principles_list:
         if not principles.has_text():
             text_files[principles.name] = None
             continue
-        principles_directory = comparison_directory / "principles"
-        principles_directory.mkdir(exist_ok=True)
-        text_file = principles_directory / f"{file_name_from(principles.name)}.md"
+        text_file = temporary_directory / f"{file_name_from(principles.name)}.md"
         text_file.write_text(principles.text(), encoding="utf-8", newline="\n")
         text_files[principles.name] = text_file
     return text_files
@@ -592,17 +585,11 @@ def write_sample_texts(samples: list[Sample], comparison_directory: Path) -> Non
         sample.file = relative_file
 
 
-def describe_principles(principles: Principles, text_file: Path | None, comparison_directory: Path) -> dict:
-    described = {
-        "name": principles.name,
-        "origin": principles.origin,
-        "files": [{"path": principle_file.path, "sha256": principle_file.sha256()} for principle_file in principles.files],
-        "text_file": None,
-        "text_sha256": None,
-    }
-    if text_file is not None:
-        described["text_file"] = text_file.relative_to(comparison_directory).as_posix()
-        described["text_sha256"] = sha256_of_text(principles.text())
+def describe_principles(principles: Principles) -> dict:
+    described = {"name": principles.name}
+    described.update(principles.origin)
+    if principles.has_text():
+        described["sha256"] = sha256_of_text(principles.text())
     return described
 
 
@@ -620,16 +607,15 @@ def describe_sample(sample: Sample) -> dict:
         "duration_api_ms": sample.duration_api_ms,
         "cost_usd": sample.cost_usd,
         "usage": sample.usage,
-        "session_id": sample.session_id,
     }
 
 
-def build_comparison(prompt_files: dict, principles_list: list[Principles], text_files: dict[str, Path | None], model_choices: list[ModelChoice], samples: list[Sample], comparison_directory: Path, created_at: datetime.datetime, agent_name: str, agent_version: str | None, effort: str) -> dict:
+def build_comparison(prompt_files: dict, principles_list: list[Principles], model_choices: list[ModelChoice], samples: list[Sample], created_at: datetime.datetime, agent_name: str, agent_version: str | None, effort: str) -> dict:
     return {
         "format": COMPARISON_FORMAT_VERSION,
         "created_at": created_at.isoformat(timespec="seconds"),
         "prompt": prompt_files,
-        "principles": [describe_principles(principles, text_files[principles.name], comparison_directory) for principles in principles_list],
+        "principles": [describe_principles(principles) for principles in principles_list],
         "agent": {"name": agent_name, "version": agent_version},
         "models": [{"label": choice.label, "requested": choice.requested} for choice in model_choices],
         "effort": effort,
@@ -686,11 +672,11 @@ def describe_origin_for_plan(principles: Principles) -> str:
         return "no principles"
     size = count_with_noun(len(principles.text()), "character")
     if kind == "worktree":
-        edits = ", with uncommitted edits" if origin["has_uncommitted_changes"] else ""
-        return f"{size}, {origin['path']}{edits}"
+        edits = ", with uncommitted edits" if origin["uncommitted"] else ""
+        return f"{size}, {principles.location}{edits}"
     if kind == "git":
-        return f"{size}, {origin['repository']} at {origin['commit'][:SHORT_COMMIT_CHARACTERS]}"
-    return f"{size}, {origin['path']}"
+        return f"{size}, {principles.location} at {origin['commit'][:SHORT_COMMIT_CHARACTERS]}"
+    return f"{size}, {principles.location}"
 
 
 def print_plan(prompt: Prompt, principles_list: list[Principles], model_choices: list[ModelChoice], samples_per_cell: int, output_description: str, agent_name: str, effort: str) -> None:
@@ -750,21 +736,22 @@ def main(argv: list[str]) -> int:
     comparison_directory = make_comparison_directory(out_directory, arguments.name or slug_from_prompt(prompt.text), created_at)
     print_plan(prompt, principles_list, model_choices, arguments.samples, str(comparison_directory), arguments.agent, arguments.effort)
     prompt_files = write_prompt_files(prompt, comparison_directory)
-    text_files = write_principles_texts(principles_list, comparison_directory)
 
-    requests = []
-    for model_choice in model_choices:
-        for principles in principles_list:
-            for index in range(1, arguments.samples + 1):
-                requests.append(SampleRequest(principles=principles, model_choice=model_choice, index=index, principles_text_file=text_files[principles.name]))
-    print("", file=sys.stderr)
-    print("Running:", file=sys.stderr)
-    started = time.monotonic()
-    samples = run_all_samples(requests, prompt.message_text(), agent_executable, arguments.effort, arguments.parallel)
-    elapsed_seconds = time.monotonic() - started
+    with tempfile.TemporaryDirectory(prefix="plain-language-compare-") as temporary_directory_name:
+        text_files = write_principles_texts(principles_list, Path(temporary_directory_name))
+        requests = []
+        for model_choice in model_choices:
+            for principles in principles_list:
+                for index in range(1, arguments.samples + 1):
+                    requests.append(SampleRequest(principles=principles, model_choice=model_choice, index=index, principles_text_file=text_files[principles.name]))
+        print("", file=sys.stderr)
+        print("Running:", file=sys.stderr)
+        started = time.monotonic()
+        samples = run_all_samples(requests, prompt.message_text(), agent_executable, arguments.effort, arguments.parallel)
+        elapsed_seconds = time.monotonic() - started
 
     write_sample_texts(samples, comparison_directory)
-    comparison = build_comparison(prompt_files, principles_list, text_files, model_choices, samples, comparison_directory, created_at, arguments.agent, agent_version, arguments.effort)
+    comparison = build_comparison(prompt_files, principles_list, model_choices, samples, created_at, arguments.agent, agent_version, arguments.effort)
     write_comparison_json(comparison, comparison_directory)
     index_file = render_index_html(comparison, prompt, samples, comparison_directory)
     print_summary(samples, elapsed_seconds)

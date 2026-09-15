@@ -47,13 +47,8 @@ A comparison is one directory with these files:
         └── 2.md
 ```
 
-Comparisons are written to the local data directory:
-
-| System | Directory |
-| --- | --- |
-| Windows | `%LOCALAPPDATA%\plain-language\comparisons` |
-| macOS | `~/Library/Application Support/plain-language/comparisons` |
-| Linux | `$XDG_DATA_HOME/plain-language/comparisons`, or `~/.local/share/plain-language/comparisons` |
+Comparisons are written to `~/.plain-language/comparisons/` on every
+system.
 
 ## Make a comparison
 
@@ -117,12 +112,14 @@ python scripts/compare.py "Explain the Strangler Fig pattern." \
 ### Before running
 
 1. Run the command with `--dry-run` first. It prints the prompt, the
-   principles, the agent and models, the number of model calls, and the
-   output directory, and calls no model.
+   principles, the agent, the models, the effort, the number of model
+   calls, and the output directory, and calls no model.
 2. Show that output to the user and ask for permission to run. Say plainly
    when the run is large: many model calls, more than one model, or more
    than one sample per set of principles.
-3. Run the command without `--dry-run` only after the user agrees.
+3. Run the command without `--dry-run` only after the user agrees, and run
+   it in the background: a run takes minutes, and the user may want to keep
+   talking meanwhile. Report the result when it finishes.
 
 ### Rules
 

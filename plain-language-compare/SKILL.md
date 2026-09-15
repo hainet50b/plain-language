@@ -47,9 +47,6 @@ A comparison is one directory with these files:
         └── 2.md
 ```
 
-Comparisons are written to `~/.plain-language/comparisons/` on every
-system.
-
 ## Make a comparison
 
 `scripts/compare.py` makes a comparison. The rest of this skill, under
@@ -70,6 +67,8 @@ claude -p --tools "" --effort high --output-format json --no-session-persistence
   --model opus \
   --append-system-prompt-file principles/installed.md
 ```
+
+The script writes the comparison to `~/.plain-language/comparisons/`.
 
 Run `python scripts/compare.py --help` first. It lists every option and how
 to name a set of principles; this file does not repeat them.
@@ -181,4 +180,6 @@ index.html#source;default,installed,1
 
 When the user asks to keep a comparison, move its directory into
 `evals/comparisons/` in a checkout of the plain-language repository, and
-drop the `-2` or `-3` suffix from its name as you do.
+drop the `-2` or `-3` suffix from its name as you do. When the comparison
+was made from a report, the plain-language-report skill says how to record
+it under the report's `## Comparisons` heading.

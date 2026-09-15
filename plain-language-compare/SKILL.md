@@ -60,6 +60,17 @@ on its own. The script needs:
 - Claude Code, because the script calls the model through the `claude`
   command.
 
+For each sample, the script runs the command below, with the prompt on
+standard input. The principles go into the system prompt, which applies
+them more firmly than loading the skill during a conversation does; with
+`none`, the last option is left out.
+
+```sh
+claude -p --tools "" --effort high --output-format json --no-session-persistence \
+  --model opus \
+  --append-system-prompt-file principles/installed.md
+```
+
 Run `python scripts/compare.py --help` first. It lists every option and how
 to name a set of principles; this file does not repeat them.
 
@@ -70,7 +81,7 @@ To see what the skill does to one prompt:
 ```sh
 python scripts/compare.py "Explain the Strangler Fig pattern." \
   --name strangler-fig \
-  --model sonnet \
+  --model opus \
   --open
 ```
 
@@ -80,7 +91,7 @@ To check a report:
 python scripts/compare.py \
   --report-file path/to/2026-09-15-idempotent-gloss.md \
   --name idempotent-gloss \
-  --model sonnet \
+  --model opus \
   --open
 ```
 
@@ -93,7 +104,7 @@ python scripts/compare.py \
   --name idempotent-gloss \
   --principles HEAD \
   --principles worktree \
-  --model sonnet \
+  --model opus \
   --samples 2 \
   --repo .
 ```
@@ -129,7 +140,7 @@ python scripts/compare.py "Explain the Strangler Fig pattern." \
   report, reuse the slug from the report's file name.
 - Keep token use low. Leave `--samples` at 1 unless the user wants to see
   how much the replies vary. Unless the user names a model, propose the
-  least capable model that can answer the prompt, such as `sonnet`, and
+  least capable model that answers the prompt well, such as `opus`, and
   pass it with `--model`; the agent's default is often its most capable and
   most expensive model. Use the default or a stronger model only when the
   user asks for it or when the comparison is about that model.

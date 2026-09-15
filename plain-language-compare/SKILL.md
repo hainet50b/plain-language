@@ -149,14 +149,16 @@ python scripts/compare.py "Explain the Strangler Fig pattern." \
 
 Pass `--open` so that the page opens in the browser as soon as the
 comparison is written; the script also prints the directory. The page opens
-one pane per set of principles and model, each showing one sample. A pane
-can be switched to any sample of any set, so two samples of the same set
-can be read next to each other.
+one pane per set of principles and model, each showing one sample, and a
+pane with the source text when the prompt has one. A pane can be switched to
+any sample of any set, or to the source text, so two samples of the same
+set, or a source and its translation, can be read next to each other.
 
 The arrangement of the panes lives in the URL after `#`: one entry per pane
-in the form `model,principles,sample`, entries separated by `;`, model and
-principles URI-encoded. When you report a comparison, give the user the URL
-for the arrangement they are likely to want, not only the directory.
+in the form `model,principles,sample`, or `source` for the source text,
+entries separated by `;`, model and principles URI-encoded. When you report
+a comparison, give the user the URL for the arrangement they are likely to
+want, not only the directory.
 
 The first sample without and with the installed principles:
 
@@ -168,6 +170,13 @@ Two samples of the same set, to see how much the replies vary:
 
 ```text
 index.html#default,installed,1;default,installed,2
+```
+
+The source text next to its translation or edit under the installed
+principles:
+
+```text
+index.html#source;default,installed,1
 ```
 
 When the user asks to keep a comparison, move its directory into

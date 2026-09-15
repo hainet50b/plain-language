@@ -14,9 +14,10 @@ conventional writing advice that backfires when agents follow it. They do
 not claim compliance with a formal plain-language standard.
 
 This repository also holds the tools that maintain the skill. One runs a
-prompt with and without the skill and shows the replies side by side. Another records an unnatural expression that a reader noticed in a
-reply, with the prompt that produced it, so that the maintainers can fix
-the principles.
+prompt with and without the skill and shows the replies side by side.
+Another records an expression that felt unnatural to a reader as a report,
+with the prompt that produced it, so that the maintainers can fix the
+principles.
 
 ## Contents
 
@@ -26,8 +27,8 @@ the principles.
 | [plain-language/references/english.md](plain-language/references/english.md) | Principles for English text that the agent produces or reviews. |
 | [plain-language/references/japanese.md](plain-language/references/japanese.md) | Principles for Japanese text that the agent produces or reviews. |
 | [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, across versions of it, or across models, and shows the replies side by side. |
-| plain-language-report/ | Skill that records an unnatural expression noticed in a reply as a report, by asking the reader a few questions. Planned. |
-| evals/ | The comparisons and reports worth keeping. They serve as the regression suite and as evidence of what the skill does. Planned. |
+| [plain-language-report/](plain-language-report/SKILL.md) | Skill that records an expression that feels unnatural to a reader as a report, with the prompt that produced it, by asking the reader what felt unnatural. |
+| evals/ | The comparisons and reports worth keeping. They serve as the regression suite and as evidence of what the skill does. |
 | [scripts/validate.py](scripts/validate.py) | Checks that the principle files agree with themselves: IDs, index rows, levels, links, and the retired table. |
 
 ## Installation

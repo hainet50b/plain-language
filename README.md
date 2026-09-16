@@ -28,7 +28,7 @@ principles.
 | [plain-language/references/japanese.md](plain-language/references/japanese.md) | Principles for Japanese text that the agent produces or reviews. |
 | [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, across versions of it, or across models, and shows the replies side by side. |
 | [plain-language-report/](plain-language-report/SKILL.md) | Skill that records an expression that feels unnatural to a reader as a report, with the prompt that produces it, by asking the reader what felt unnatural. |
-| evals/ | The comparisons and reports worth keeping. They serve as the regression suite and as evidence of what the skill does. |
+| [evals/](evals/README.md) | The reports and comparisons worth keeping. They serve as the regression suite and as evidence of what the skill does. |
 | [scripts/validate.py](scripts/validate.py) | Checks that the principle files agree with themselves: IDs, index rows, levels, links, and the retired table. |
 
 ## Installation

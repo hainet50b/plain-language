@@ -63,7 +63,7 @@ The frontmatter records what became of the report:
 | Field | Content |
 | --- | --- |
 | `status` | `open` when the report is written; the maintainers change it to `resolved` or `not-planned`. |
-| `principles` | Empty when the report is written. The maintainers later add the IDs of the principles that cover the expression, such as `P502`. |
+| `principles` | Empty when the report is written. The maintainers later add the IDs of the principles related to the expression, such as `P502`. |
 
 The sections record the report itself:
 
@@ -170,7 +170,7 @@ copy the file into `evals/reports/` without changing its name.
 When the maintainers have checked the report, for example by reproducing
 the expression with the plain-language-compare skill, and the user says
 what became of it, change `status` to `resolved` or `not-planned` and add
-the IDs of the principles that cover the expression to `principles`.
+to `principles` the IDs of the principles related to the expression.
 Under `## Comparisons`, add one bullet for each comparison kept in
 `evals/comparisons/` for the report: a link to the comparison and a
 summary of what it showed.

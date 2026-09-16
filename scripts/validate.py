@@ -1,4 +1,5 @@
-"""Check that the plain-language principle files agree with themselves.
+"""Check that the plain-language principle files agree with themselves,
+and that the files that link into them still point at existing headings.
 
 Usage: python scripts/validate.py
 Exit code 0 when every check passes, 1 when any check reports a problem.
@@ -17,6 +18,11 @@ PRINCIPLE_FILES = [
     SKILL_DIRECTORY / "references" / "japanese.md",
 ]
 RETIRED_TABLE_FILE = SKILL_DIRECTORY / "SKILL.md"
+# files outside the skill whose links into the principle files are checked
+FILES_LINKING_TO_PRINCIPLES = [
+    REPOSITORY_ROOT / "README.md",
+    REPOSITORY_ROOT / "evals" / "README.md",
+]
 
 # matches "P302" and "J601"; does not match "P02" or "P802"
 PRINCIPLE_ID = re.compile(r"^[PJE][1-7]\d\d$")
@@ -59,6 +65,10 @@ class PrincipleFile:
     anchors: set[str]
     index_ids: dict[str, str]
     principles: list[Principle]
+
+
+def display_path(path: Path) -> str:
+    return path.relative_to(REPOSITORY_ROOT).as_posix()
 
 
 def github_anchor(heading_text: str) -> str:
@@ -164,7 +174,7 @@ def check_id_format(files: list[PrincipleFile]) -> list[str]:
         for principle in file.principles:
             if PRINCIPLE_ID.match(principle.id):
                 continue
-            problems.append(f"{file.path.name}: {principle.id} is not a valid ID")
+            problems.append(f"{display_path(file.path)}: {principle.id} is not a valid ID")
     return problems
 
 
@@ -175,9 +185,9 @@ def check_ids_unique(files: list[PrincipleFile]) -> list[str]:
         for principle in file.principles:
             earlier_file = file_by_id.get(principle.id)
             if earlier_file is not None:
-                problems.append(f"{file.path.name}: {principle.id} also appears in {earlier_file}")
+                problems.append(f"{display_path(file.path)}: {principle.id} also appears in {earlier_file}")
                 continue
-            file_by_id[principle.id] = file.path.name
+            file_by_id[principle.id] = display_path(file.path)
     return problems
 
 
@@ -185,15 +195,15 @@ def check_index_matches_sections(file: PrincipleFile) -> list[str]:
     problems: list[str] = []
     section_ids = {principle.id for principle in file.principles}
     for principle_id in sorted(set(file.index_ids) - section_ids):
-        problems.append(f"{file.path.name}: {principle_id} is in the index but has no section")
+        problems.append(f"{display_path(file.path)}: {principle_id} is in the index but has no section")
     for principle_id in sorted(section_ids - set(file.index_ids)):
-        problems.append(f"{file.path.name}: {principle_id} has a section but is not in the index")
+        problems.append(f"{display_path(file.path)}: {principle_id} has a section but is not in the index")
     for principle in file.principles:
         expected_anchor = github_anchor(f"{principle.id} {principle.title}")
         actual_anchor = file.index_ids.get(principle.id)
         if actual_anchor is None or actual_anchor == expected_anchor:
             continue
-        problems.append(f"{file.path.name}: index links {principle.id} to #{actual_anchor}, section is #{expected_anchor}")
+        problems.append(f"{display_path(file.path)}: index links {principle.id} to #{actual_anchor}, section is #{expected_anchor}")
     return problems
 
 
@@ -203,22 +213,22 @@ def check_sections_under_matching_level(file: PrincipleFile) -> list[str]:
         level_in_id = principle.id[1]
         if principle.level_of_section == level_in_id:
             continue
-        problems.append(f"{file.path.name}: {principle.id} sits under level {principle.level_of_section or 'none'}, its ID says {level_in_id}")
+        problems.append(f"{display_path(file.path)}: {principle.id} sits under level {principle.level_of_section or 'none'}, its ID says {level_in_id}")
     return problems
 
 
-def check_links_resolve(file: PrincipleFile, anchors_by_file_name: dict[str, set[str]]) -> list[str]:
+def check_links_resolve(file: PrincipleFile, files_by_path: dict[Path, PrincipleFile]) -> list[str]:
     problems: list[str] = []
     for line in file.lines:
         for link in LINK_WITH_ANCHOR.finditer(line):
-            target_file_name = Path(link.group("target")).name or file.path.name
-            known_anchors = anchors_by_file_name.get(target_file_name)
-            if known_anchors is None:
-                problems.append(f"{file.path.name}: link to unknown file {link.group('target')}")
+            target_path = (file.path.parent / link.group("target")).resolve() if link.group("target") else file.path
+            target = files_by_path.get(target_path)
+            if target is None:
+                problems.append(f"{display_path(file.path)}: link to unknown file {link.group('target')}")
                 continue
-            if link.group("anchor") in known_anchors:
+            if link.group("anchor") in target.anchors:
                 continue
-            problems.append(f"{file.path.name}: #{link.group('anchor')} does not exist in {target_file_name}")
+            problems.append(f"{display_path(file.path)}: #{link.group('anchor')} does not exist in {display_path(target.path)}")
     return problems
 
 
@@ -227,7 +237,7 @@ def check_back_to_index_links(file: PrincipleFile) -> list[str]:
     for principle in file.principles:
         if principle.last_line in BACK_TO_INDEX_LINKS:
             continue
-        problems.append(f"{file.path.name}: {principle.id} does not end with a link back to the index")
+        problems.append(f"{display_path(file.path)}: {principle.id} does not end with a link back to the index")
     return problems
 
 
@@ -242,16 +252,18 @@ def check_retired_table(lines: list[str], current_ids: set[str]) -> list[str]:
     return problems
 
 
-def run_all_checks(files: list[PrincipleFile]) -> list[str]:
+def run_all_checks(files: list[PrincipleFile], linking_files: list[PrincipleFile]) -> list[str]:
     problems: list[str] = []
     problems.extend(check_id_format(files))
     problems.extend(check_ids_unique(files))
-    anchors_by_file_name = {file.path.name: file.anchors for file in files}
+    files_by_path = {file.path: file for file in files + linking_files}
     for file in files:
         problems.extend(check_index_matches_sections(file))
         problems.extend(check_sections_under_matching_level(file))
-        problems.extend(check_links_resolve(file, anchors_by_file_name))
+        problems.extend(check_links_resolve(file, files_by_path))
         problems.extend(check_back_to_index_links(file))
+    for linking_file in linking_files:
+        problems.extend(check_links_resolve(linking_file, files_by_path))
     current_ids = {principle.id for file in files for principle in file.principles}
     retired_table_lines = RETIRED_TABLE_FILE.read_text(encoding="utf-8").splitlines()
     problems.extend(check_retired_table(retired_table_lines, current_ids))
@@ -260,7 +272,8 @@ def run_all_checks(files: list[PrincipleFile]) -> list[str]:
 
 def main() -> int:
     files = [load_principle_file(path) for path in PRINCIPLE_FILES]
-    problems = run_all_checks(files)
+    linking_files = [load_principle_file(path) for path in FILES_LINKING_TO_PRINCIPLES]
+    problems = run_all_checks(files, linking_files)
     for problem in problems:
         print(problem)
     principle_count = sum(len(file.principles) for file in files)

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="plain-language">
+  <!-- README header, 1200x300. Ground #F6F3EC, line #222831, point #C8552D,
+       wordmark #222831. Wordmark is Atkinson Hyperlegible; keep a sans
+       fallback. banner.png beside this file was rendered from it with that
+       font loaded; a converter without Atkinson Hyperlegible will not match it.
+
+       No tagline on purpose: what the skill is belongs in the README and in
+       the repository description, where it costs one line to change. -->
+  <rect width="1200" height="300" fill="#F6F3EC"/>
+  <g transform="translate(121.3 52.5) scale(3.05)">
+    <path d="M10 32H40" fill="none" stroke="#222831" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="52" cy="32" r="5" fill="#C8552D"/>
+  </g>
+  <text x="364.5" y="178" fill="#222831" font-family="Atkinson Hyperlegible, Segoe UI, Helvetica Neue, Arial, sans-serif"
+        font-size="104" letter-spacing="1">plain-language</text>
+</svg>

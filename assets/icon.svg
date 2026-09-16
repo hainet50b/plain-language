@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512" role="img" aria-label="plain-language">
+  <!-- plain-language mark. A line and the point it arrives at: the reader
+       follows the text and reaches its meaning. Ground #F6F3EC, line
+       #222831, point #C8552D. Square and full bleed: platforms round the
+       corners themselves. -->
+  <rect width="64" height="64" fill="#F6F3EC"/>
+  <path d="M10 32H40" fill="none" stroke="#222831" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="52" cy="32" r="5" fill="#C8552D"/>
+</svg>

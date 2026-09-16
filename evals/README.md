@@ -20,8 +20,9 @@ A comparison shows how one prompt is answered under each set of principles
 and by each model. Comparisons are made with the
 [plain-language-compare](../plain-language-compare/SKILL.md) skill. Each
 directory holds the prompt, one file per sample, `comparison.json` with the
-models and the principles that produced the samples, and `index.html` with
-the side-by-side view.
+models and the principles that produced the samples, `annotations.js` with
+the spans a reader marked as good or bad, if any, and `index.html` with the
+side-by-side view.
 
 GitHub does not render `index.html`. To read a comparison side by side,
 clone the repository and open the file in a browser; it works offline. The

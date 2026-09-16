@@ -24,6 +24,7 @@ that a person can see what changes between them.
 | principles | The principle files the model reads before it replies: none, the installed skill, a version in the repository, or any directory holding them. |
 | sample | One reply to the prompt from one model under one set of principles. |
 | comparison | One prompt, and the samples for it under each set of principles and each model, recorded in one directory. |
+| annotation | A note on a span of one sample, or of the source text, that marks the span as good or bad. |
 
 ## Structure of a comparison
 
@@ -33,6 +34,7 @@ A comparison is one directory with these files:
 2026-09-13-strangler-fig/
 ├── comparison.json         principles, models, and for each sample its file, model, cost, and timing
 ├── index.html              the side-by-side view; opens offline
+├── annotations.js          the annotations, once someone has added any
 ├── prompt/
 │   ├── prompt.md           the instruction
 │   └── source.md           the source text, when there is one
@@ -176,8 +178,47 @@ principles:
 index.html#source;default,installed,1
 ```
 
-When the user asks to keep a comparison, copy its directory into
-`evals/comparisons/` in a checkout of the plain-language repository, and
-drop the `-2` or `-3` suffix from its name as you do. When the comparison
-was made from a report, the plain-language-report skill says how to record
-it under the report's `## Comparisons` heading.
+## Annotate the comparison
+
+An annotation marks a span of a sample, or of the source text, as good or
+bad, with a note. Annotations record what a reader saw in the replies, for
+a demonstration or an explanation.
+
+A person adds, edits, and deletes annotations in the page, and saves them
+with "Save annotations" to `annotations.js` in the comparison's directory.
+The page reads that file when it opens and marks good spans in blue and bad
+spans in orange.
+
+When the user asks you to annotate a comparison, write or edit
+`annotations.js` yourself. It declares one object:
+
+```js
+const annotations = {
+  "format": 1,
+  "annotations": [
+    {
+      "target": "samples/installed.default/1.md",
+      "quote": "safe to repeat",
+      "occurrence": 1,
+      "kind": "bad",
+      "note": "The question used \"idempotent\"; the reply avoids it."
+    }
+  ]
+};
+```
+
+| Field | Content |
+| --- | --- |
+| `target` | The sample file, as `comparison.json` names it, or the source file under `prompt/`. |
+| `quote` | The span as the page shows it, without Markdown syntax. |
+| `occurrence` | Which occurrence of the quote in the target the annotation marks, counted from 1. |
+| `kind` | `good` or `bad`. |
+| `note` | What the reader thought about the span; may be empty. |
+
+## Import a comparison
+
+The maintainers keep comparisons in `evals/comparisons/` in a checkout of
+the plain-language repository. When the user asks to import a comparison,
+copy its directory there and drop the `-2` or `-3` suffix from its name.
+When the comparison was made from a report, the plain-language-report skill
+says how to record it under the report's `## Comparisons` heading.

@@ -1,5 +1,5 @@
 ---
-status: open
+status: resolved
 principles: [P502, J502]
 ---
 

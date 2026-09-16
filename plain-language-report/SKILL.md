@@ -153,19 +153,14 @@ maintainer.
 ## Import a report
 
 The maintainers keep reports in `evals/reports/` in a checkout of the
-plain-language repository, where anyone can read them. Importing a report
-copies it there. Recording what became of it comes later, when the
-maintainers have checked it.
+plain-language repository, where anyone can read them. When the user asks
+to import a report, first read it for anything that should not be
+published: names, internal details, and source text that is not the
+reporter's to share. Propose replacements that keep the expression and
+what the reporter felt, and apply them after the user agrees. Then copy
+the file into `evals/reports/` without changing its name.
 
-### Copy the report
-
-When the user asks to import a report, first read it for anything that
-should not be published: names, internal details, and source text that is
-not the reporter's to share. Propose replacements that keep the expression
-and what the reporter felt, and apply them after the user agrees. Then
-copy the file into `evals/reports/` without changing its name.
-
-### Record the outcome
+## Record the outcome
 
 When the maintainers have checked the report, for example by reproducing
 the expression with the plain-language-compare skill, and the user says
@@ -174,3 +169,16 @@ to `principles` the IDs of the principles related to the expression.
 Under `## Comparisons`, add one bullet for each comparison kept in
 `evals/comparisons/` for the report: a link to the comparison and a
 summary of what it showed.
+
+## Update the table of findings
+
+The table under `## Past findings` in `evals/README.md` lists every report
+kept in `evals/reports/`.
+
+When you import a report, add a row for it: the report linked to its file,
+an empty Comparison cell, the language of the reply, and the status and
+principles from its frontmatter.
+
+When you record the outcome of a report, bring its row up to date: the
+comparisons linked to their directories, the status, and the principles
+linked to their sections.

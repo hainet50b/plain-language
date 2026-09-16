@@ -47,7 +47,7 @@ letter and the first digit of an ID are explained under
 | [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
 | [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
-| [P502](#p502-respect-technical-meaning) | Keep established technical terms and simplify the surrounding language first. |
+| [P502](#p502-respect-technical-meaning) | Name technical concepts by their established terms. |
 | [P701](#p701-preserve-meaning) | Preserve meaning and logical structure when improving style. |
 | [P702](#p702-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
 
@@ -312,11 +312,15 @@ in both sentences:
 ### P502 Respect technical meaning
 
 **Application.** Use established terms for technical concepts and preserve
-their specific meanings. Improve readability first by simplifying the
-surrounding wording and sentence structure. Do not replace a technical term
-with a general expression merely because the reader's subject knowledge is
-unknown. When translating, use established terms in the target language
-where available.
+their specific meanings. Do not replace a technical term with a general
+expression merely because the reader's subject knowledge is unknown. When
+translating, use established terms in the target language where available.
+
+When a request or a source describes a concept instead of naming it, name
+the concept by its established term. The description is not a term that
+[P501](#p501-keep-terms-consistent) requires you to keep, and naming the
+concept does not add information under
+[P702](#p702-edit-and-translate-transparently).
 
 Add a definition, explanation, or example when the reader's knowledge and
 the passage's purpose call for it. When translating, follow
@@ -332,6 +336,10 @@ If readers need an explanation, write:
 
 > This operation is idempotent: repeating it has the same effect as
 > performing it once.
+
+A request that describes an operation as one that "can be repeated with
+the same effect as running it once" describes idempotence. Write
+"idempotent" rather than repeating the description.
 
 [Back to the principle index](#principle-index)
 

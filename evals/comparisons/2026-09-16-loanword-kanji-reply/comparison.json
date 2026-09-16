@@ -1,0 +1,75 @@
+{
+  "format": 3,
+  "created_at": "2026-09-16T15:49:51+09:00",
+  "prompt": {
+    "file": "prompt/prompt.md",
+    "source_file": null,
+    "report": "2026-09-15-loanword-kanji-reply.md"
+  },
+  "principles": [
+    {
+      "name": "HEAD",
+      "kind": "git",
+      "commit": "8f2f2a58313e904309e4d38cf5581118b78148f3",
+      "sha256": "20d6d54f898b2641eb17c90d38b600d94e6660c34ec559d2e15294bad1340123"
+    },
+    {
+      "name": "worktree",
+      "kind": "worktree",
+      "base_commit": "8f2f2a58313e904309e4d38cf5581118b78148f3",
+      "uncommitted": true,
+      "sha256": "3eb78aef9b4bde36718cd195c61443275ae1df3903bb045815d0859df59a7414"
+    }
+  ],
+  "agent": {
+    "name": "claude",
+    "version": "2.1.267"
+  },
+  "models": [
+    {
+      "label": "claude-fable-5-1",
+      "requested": "claude-fable-5-1"
+    }
+  ],
+  "effort": "high",
+  "samples": [
+    {
+      "principles": "HEAD",
+      "model_label": "claude-fable-5-1",
+      "index": 1,
+      "file": "samples/HEAD.claude-fable-5-1/1.md",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "is_error": false,
+      "error": null,
+      "duration_ms": 127123,
+      "duration_api_ms": 113860,
+      "cost_usd": 0.47256850000000006,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1391,
+        "cache_read_input_tokens": 19314,
+        "output_tokens": 8798
+      }
+    },
+    {
+      "principles": "worktree",
+      "model_label": "claude-fable-5-1",
+      "index": 1,
+      "file": "samples/worktree.claude-fable-5-1/1.md",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "is_error": false,
+      "error": null,
+      "duration_ms": 129699,
+      "duration_api_ms": 121820,
+      "cost_usd": 0.5361117499999999,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1386,
+        "cache_read_input_tokens": 19687,
+        "output_tokens": 10069
+      }
+    }
+  ]
+}

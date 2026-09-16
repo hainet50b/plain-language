@@ -15,6 +15,10 @@
     --pane-header: #d9e0e8;
     --accent: #0969da;
     --error: #cf222e;
+    /* Blue and vermilion from the Okabe-Ito palette stay apart for readers
+       who do not tell red from green. */
+    --good: #0072b2;
+    --bad: #d55e00;
   }
   * { box-sizing: border-box; }
   body {
@@ -97,6 +101,8 @@
     color: var(--muted);
   }
   .toolbar .group { display: flex; align-items: center; gap: 6px; }
+  .toolbar .annotation-controls { margin-left: auto; gap: 10px; }
+  .toolbar .annotation-controls label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
   button.chip {
     border: 1px solid var(--line);
     background: var(--panel);
@@ -194,6 +200,52 @@
   .sample th { font-weight: 600; }
   .sample blockquote { margin: 0.6em 0; padding: 0 12px; border-left: 3px solid var(--line); color: var(--muted); }
   .sample img { max-width: 100%; }
+  mark.annotation { color: inherit; border-radius: 2px; cursor: pointer; }
+  mark.annotation.good { background: rgba(0, 114, 178, 0.18); box-shadow: inset 0 -2px 0 var(--good); }
+  mark.annotation.bad {
+    background: rgba(213, 94, 0, 0.18);
+    text-decoration: underline wavy var(--bad);
+    text-decoration-skip-ink: none;
+  }
+  .popover {
+    position: absolute;
+    z-index: 5;
+    max-width: calc(100vw - 32px);
+    padding: 10px 12px 12px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+    font-size: 13px;
+  }
+  .popover .quote {
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+  }
+  .popover .kind { font-weight: 600; margin-bottom: 4px; }
+  .popover .kind.good { color: var(--good); }
+  .popover .kind.bad { color: var(--bad); }
+  .popover .note { white-space: pre-wrap; }
+  .popover label { display: block; color: var(--muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 6px; }
+  .popover textarea, .popover input {
+    width: 100%;
+    font: inherit;
+    font-size: 13px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 4px 6px;
+  }
+  .popover textarea { min-height: 64px; resize: vertical; }
+  .popover .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .popover .actions button { white-space: nowrap; }
+  .popover .actions .spacer { flex: 1; }
+  button.chip.good { border-color: var(--good); color: var(--good); }
+  button.chip.bad { border-color: var(--bad); color: var(--bad); }
+  button.chip:disabled { color: var(--muted); cursor: default; }
+  .unsaved { color: var(--error); }
   @media (max-width: 900px) {
     main { grid-template-columns: 1fr; }
     .pane { border-right: none; border-bottom: 1px solid var(--line); }
@@ -209,6 +261,11 @@
   <table class="about" id="about"></table>
   <div class="toolbar">
     <div class="group" id="sample-buttons"><span>Sample in every pane:</span></div>
+    <div class="group annotation-controls">
+      <label><input type="checkbox" id="show-annotations" checked> <span id="show-annotations-label">Show annotations</span></label>
+      <span id="annotation-status"></span>
+      <button type="button" class="chip" id="save-annotations">Save annotations</button>
+    </div>
   </div>
 </header>
 <main id="panes"></main>
@@ -296,6 +353,8 @@ if(__exports != exports)module.exports = exports;return module.exports}));
 //# sourceMappingURL=marked.umd.js.map
 
 </script>
+<!-- annotations.js next to this page declares `annotations`; the page works without it. -->
+<script src="annotations.js" charset="utf-8"></script>
 <script>
 const comparison = {"format": 3, "created_at": "2026-09-16T15:49:51+09:00", "prompt": {"file": "prompt/prompt.md", "source_file": null, "report": "2026-09-15-loanword-kanji-reply.md"}, "principles": [{"name": "HEAD", "kind": "git", "commit": "8f2f2a58313e904309e4d38cf5581118b78148f3", "sha256": "20d6d54f898b2641eb17c90d38b600d94e6660c34ec559d2e15294bad1340123"}, {"name": "worktree", "kind": "worktree", "base_commit": "8f2f2a58313e904309e4d38cf5581118b78148f3", "uncommitted": true, "sha256": "3eb78aef9b4bde36718cd195c61443275ae1df3903bb045815d0859df59a7414"}], "agent": {"name": "claude", "version": "2.1.267"}, "models": [{"label": "claude-fable-5-1", "requested": "claude-fable-5-1"}], "effort": "high", "samples": [{"principles": "HEAD", "model_label": "claude-fable-5-1", "index": 1, "file": "samples/HEAD.claude-fable-5-1/1.md", "model": "claude-fable-5-1", "stop_reason": "end_turn", "is_error": false, "error": null, "duration_ms": 127123, "duration_api_ms": 113860, "cost_usd": 0.47256850000000006, "usage": {"input_tokens": 2, "cache_creation_input_tokens": 1391, "cache_read_input_tokens": 19314, "output_tokens": 8798}}, {"principles": "worktree", "model_label": "claude-fable-5-1", "index": 1, "file": "samples/worktree.claude-fable-5-1/1.md", "model": "claude-fable-5-1", "stop_reason": "end_turn", "is_error": false, "error": null, "duration_ms": 129699, "duration_api_ms": 121820, "cost_usd": 0.5361117499999999, "usage": {"input_tokens": 2, "cache_creation_input_tokens": 1386, "cache_read_input_tokens": 19687, "output_tokens": 10069}}]};
 const promptTexts = {"prompt": "日本語で書かれたとある Agent Skill の SKILL.md に、以下を参考にして「外部ツールの使用ルール」というセクションを書き加えてください。読み手は日本のソフトウェアエンジニアです。ファイルを作らず、本文を回答に書いてください。\n\nセクションの構成は次のとおりにしてください。\n\n1. 冒頭に索引の表を置く。列は「ID」「名前」「要約」で、名前は 2 文字から 8 文字、要約は 20 文字以内にする\n2. ルールごとに、見出し、方針、理由、例を書く。見出しは 12 文字以内にする\n3. 例は表にし、列見出しと項目名は短くする\n4. セクションの末尾に、このセクションで使う用語を「用語 — 意味」の形で箇条書きにする\n\nルールの内容:\n- 外部ツールを取り込むときは、最新の公開物ではなく、検証済みの特定の公開物に固定する\n- 取り込んだ公開物は、配布元が示す `sha256` の値と一致するかを確かめてから使う\n- 取り込んだ公開物は、ログインしている利用者に割り当てられたディレクトリの直下に保存しておき、二度目以降はそれを再利用する\n- 時間のかかる処理は、端末を占有しない形で動かし、終わったら結果を報告する\n- 処理が消費する CPU、メモリ、ディスクの量には上限を設け、上限に近づいたら依頼者に知らせる\n- 新しい公開物に切り替えて問題が起きたら、直前に使っていた公開物に戻す\n- ツールを選ぶときは、候補ごとに得られるものと失うものを並べて比べる\n- ツールに不具合を見つけたら、そのツールを保守している人に、再現手順を添えて報告する", "source": null};
@@ -479,6 +538,8 @@ function renderSampleBody(container, cell, sample) {
     return;
   }
   container.innerHTML = marked.parse(sampleText(cell, sample.index), { gfm: true, breaks: false });
+  container.dataset.target = sample.file;
+  markAnnotationsIn(container, sample.file);
 }
 
 function makeField(caption, select) {
@@ -546,6 +607,8 @@ function renderSourcePane(pane, paneNumber) {
   const body = document.createElement("div");
   body.className = "sample";
   body.innerHTML = marked.parse(promptTexts.source, { gfm: true, breaks: false });
+  body.dataset.target = comparison.prompt.source_file;
+  markAnnotationsIn(body, comparison.prompt.source_file);
   section.appendChild(header);
   section.appendChild(body);
   return section;
@@ -633,6 +696,7 @@ function renderAddPane() {
 }
 
 function renderPanes() {
+  closePopover();
   const main = document.getElementById("panes");
   main.innerHTML = "";
   main.style.setProperty("--pane-count", String(panes.length));
@@ -682,10 +746,379 @@ function readArrangementFromHash() {
   return read.length ? read : null;
 }
 
+// An annotation marks a span of one sample, or of the source text, as good
+// or bad, with a note. The span is the quoted text as the page shows it and
+// the number of the occurrence, counted from 1, so that a person or an agent
+// can write the same file by hand.
+const ANNOTATIONS_FILE_NAME = "annotations.js";
+const ANNOTATIONS_FORMAT_VERSION = 1;
+const ANNOTATION_KINDS = ["good", "bad"];
+
+let annotationList = readAnnotationsFile();
+// While hidden, the page shows the replies plain and adds no annotations.
+let annotationsShown = true;
+let annotationsFileHandle = null;
+let unsavedChanges = false;
+let popover = null;
+
+function readAnnotationsFile() {
+  if (typeof annotations === "undefined") return [];
+  if (!Array.isArray(annotations.annotations)) return [];
+  const read = [];
+  for (const annotation of annotations.annotations) {
+    if (typeof annotation.target !== "string" || typeof annotation.quote !== "string") continue;
+    if (!ANNOTATION_KINDS.includes(annotation.kind)) continue;
+    read.push({
+      target: annotation.target,
+      quote: annotation.quote,
+      occurrence: Number.isInteger(annotation.occurrence) && annotation.occurrence > 0 ? annotation.occurrence : 1,
+      kind: annotation.kind,
+      note: typeof annotation.note === "string" ? annotation.note : "",
+    });
+  }
+  return read;
+}
+
+function annotationsFileText() {
+  const content = { format: ANNOTATIONS_FORMAT_VERSION, annotations: annotationList };
+  return "const annotations = " + JSON.stringify(content, null, 2) + ";\n";
+}
+
+// The text of a container as one string, with the text nodes that make it
+// up and where each begins, so that a position in the string maps back to
+// a node.
+function textStreamOf(container) {
+  const nodes = [];
+  const starts = [];
+  let text = "";
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  let node = walker.nextNode();
+  while (node) {
+    nodes.push(node);
+    starts.push(text.length);
+    text += node.nodeValue;
+    node = walker.nextNode();
+  }
+  return { nodes: nodes, starts: starts, text: text };
+}
+
+function positionOfOccurrence(text, quote, occurrence) {
+  let position = -1;
+  for (let found = 0; found < occurrence; found++) {
+    position = text.indexOf(quote, position + 1);
+    if (position < 0) return -1;
+  }
+  return position;
+}
+
+function occurrenceAt(text, quote, position) {
+  let occurrence = 0;
+  let searchFrom = 0;
+  while (true) {
+    const found = text.indexOf(quote, searchFrom);
+    if (found < 0 || found > position) return occurrence;
+    occurrence++;
+    searchFrom = found + 1;
+  }
+}
+
+function markAnnotationsIn(container, target) {
+  if (!annotationsShown) return;
+  for (const annotation of annotationList) {
+    if (annotation.target !== target) continue;
+    const stream = textStreamOf(container);
+    const start = positionOfOccurrence(stream.text, annotation.quote, annotation.occurrence);
+    if (start < 0) {
+      console.warn("Annotation not found in " + target + ": " + JSON.stringify(annotation.quote));
+      continue;
+    }
+    wrapStreamRangeInMarks(stream, start, start + annotation.quote.length, annotation);
+  }
+}
+
+// Splits every text node that overlaps the range and wraps the overlapping
+// piece, because one mark element cannot cross element boundaries.
+function wrapStreamRangeInMarks(stream, start, end, annotation) {
+  for (let number = 0; number < stream.nodes.length; number++) {
+    const node = stream.nodes[number];
+    const nodeStart = stream.starts[number];
+    const nodeEnd = nodeStart + node.nodeValue.length;
+    const overlapStart = Math.max(start, nodeStart);
+    const overlapEnd = Math.min(end, nodeEnd);
+    if (overlapStart >= overlapEnd) continue;
+    let piece = node;
+    if (overlapStart > nodeStart) piece = node.splitText(overlapStart - nodeStart);
+    if (overlapEnd < nodeEnd) piece.splitText(overlapEnd - overlapStart);
+    const mark = makeMark(annotation);
+    piece.parentNode.insertBefore(mark, piece);
+    mark.appendChild(piece);
+  }
+}
+
+function describeAnnotation(annotation) {
+  if (annotation.note === "") return annotation.kind;
+  return annotation.kind + "\n" + annotation.note;
+}
+
+function makeMark(annotation) {
+  const mark = document.createElement("mark");
+  mark.className = "annotation " + annotation.kind;
+  mark.title = describeAnnotation(annotation);
+  mark.addEventListener("click", event => {
+    event.stopPropagation();
+    showAnnotationPopover(annotation, mark.getBoundingClientRect());
+  });
+  return mark;
+}
+
+function sampleBodyContaining(node) {
+  const element = node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+  if (!element) return null;
+  return element.closest(".sample");
+}
+
+// A selection boundary is a text node with an offset, or an element with
+// the number of the child before which the boundary sits.
+function streamPositionOf(stream, container, offset) {
+  if (container.nodeType === Node.TEXT_NODE) {
+    const number = stream.nodes.indexOf(container);
+    if (number < 0) return null;
+    return stream.starts[number] + offset;
+  }
+  const childAfterBoundary = container.childNodes[offset];
+  if (childAfterBoundary) return positionBeforeNode(stream, childAfterBoundary);
+  return positionAfterNode(stream, container);
+}
+
+function positionBeforeNode(stream, node) {
+  for (let number = 0; number < stream.nodes.length; number++) {
+    const textNode = stream.nodes[number];
+    if (textNode === node) return stream.starts[number];
+    const relation = node.compareDocumentPosition(textNode);
+    if (relation & (Node.DOCUMENT_POSITION_CONTAINED_BY | Node.DOCUMENT_POSITION_FOLLOWING)) return stream.starts[number];
+  }
+  return stream.text.length;
+}
+
+function positionAfterNode(stream, node) {
+  for (let number = 0; number < stream.nodes.length; number++) {
+    const textNode = stream.nodes[number];
+    const relation = node.compareDocumentPosition(textNode);
+    const isInside = relation & Node.DOCUMENT_POSITION_CONTAINED_BY;
+    if (!isInside && relation & Node.DOCUMENT_POSITION_FOLLOWING) return stream.starts[number];
+  }
+  return stream.text.length;
+}
+
+function handleSelectionEnd(event) {
+  if (!annotationsShown) return;
+  if (popover && popover.contains(event.target)) return;
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed || selection.rangeCount === 0) return;
+  const range = selection.getRangeAt(0);
+  const body = sampleBodyContaining(range.commonAncestorContainer);
+  if (!body || !body.dataset.target) return;
+  const stream = textStreamOf(body);
+  const start = streamPositionOf(stream, range.startContainer, range.startOffset);
+  const end = streamPositionOf(stream, range.endContainer, range.endOffset);
+  if (start === null || end === null || start >= end) return;
+  const quote = stream.text.slice(start, end);
+  if (quote.trim() === "") return;
+  const span = { target: body.dataset.target, quote: quote, occurrence: occurrenceAt(stream.text, quote, start) };
+  showNewAnnotationPopover(span, range.getBoundingClientRect());
+}
+
+// Wide enough for the four buttons of the editing form on one line.
+const POPOVER_WIDTH_PIXELS = 420;
+const POPOVER_HEIGHT_ESTIMATE_PIXELS = 230;
+
+// The popover is placed in document coordinates, so that it stays next to
+// the span while the page scrolls.
+function openPopover(anchorRect) {
+  closePopover();
+  popover = document.createElement("div");
+  popover.className = "popover";
+  popover.style.width = POPOVER_WIDTH_PIXELS + "px";
+  popover.addEventListener("mousedown", event => event.stopPropagation());
+  popover.addEventListener("mouseup", event => event.stopPropagation());
+  document.body.appendChild(popover);
+  const leftInViewport = Math.max(16, Math.min(anchorRect.left, window.innerWidth - POPOVER_WIDTH_PIXELS - 16));
+  popover.style.left = (leftInViewport + window.scrollX) + "px";
+  const fitsBelow = anchorRect.bottom + POPOVER_HEIGHT_ESTIMATE_PIXELS < window.innerHeight;
+  const topInViewport = fitsBelow ? anchorRect.bottom + 6 : Math.max(16, anchorRect.top - POPOVER_HEIGHT_ESTIMATE_PIXELS - 6);
+  popover.style.top = (topInViewport + window.scrollY) + "px";
+  return popover;
+}
+
+function closePopover() {
+  if (!popover) return;
+  popover.remove();
+  popover = null;
+}
+
+function appendQuoteLine(container, quote) {
+  const line = document.createElement("div");
+  line.className = "quote";
+  line.textContent = "“" + quote + "”";
+  line.title = quote;
+  container.appendChild(line);
+}
+
+function makeChipButton(text, className, onClick) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "chip " + className;
+  button.textContent = text;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
+// The form for a new annotation and for an existing one: a note and one
+// submit button per kind, so that choosing the kind and submitting take one
+// click. Returns the actions row so that the caller can add its own buttons.
+function appendAnnotationForm(container, initialNote, verb, onSubmit) {
+  const noteLabel = document.createElement("label");
+  noteLabel.textContent = "Note";
+  const noteInput = document.createElement("textarea");
+  noteInput.value = initialNote;
+  noteLabel.appendChild(noteInput);
+  container.appendChild(noteLabel);
+
+  const actions = document.createElement("div");
+  actions.className = "actions";
+  for (const kind of ANNOTATION_KINDS) {
+    actions.appendChild(makeChipButton(verb + " as " + kind, kind, () => {
+      onSubmit(kind, noteInput.value);
+    }));
+  }
+  const spacer = document.createElement("span");
+  spacer.className = "spacer";
+  actions.appendChild(spacer);
+  container.appendChild(actions);
+  noteInput.focus();
+  return actions;
+}
+
+function showNewAnnotationPopover(span, anchorRect) {
+  const container = openPopover(anchorRect);
+  appendQuoteLine(container, span.quote);
+  const actions = appendAnnotationForm(container, "", "Add", (kind, noteText) => {
+    addAnnotation(span, kind, noteText);
+  });
+  actions.appendChild(makeChipButton("Cancel", "", closePopover));
+}
+
+function addAnnotation(span, kind, noteText) {
+  annotationList.push({
+    target: span.target,
+    quote: span.quote,
+    occurrence: span.occurrence,
+    kind: kind,
+    note: noteText.trim(),
+  });
+  window.getSelection().removeAllRanges();
+  recordChange();
+}
+
+function showAnnotationPopover(annotation, anchorRect) {
+  const container = openPopover(anchorRect);
+  appendQuoteLine(container, annotation.quote);
+  const kind = document.createElement("div");
+  kind.className = "kind " + annotation.kind;
+  kind.textContent = "marked as " + annotation.kind;
+  container.appendChild(kind);
+  const actions = appendAnnotationForm(container, annotation.note, "Save", (newKind, noteText) => {
+    updateAnnotation(annotation, newKind, noteText);
+  });
+  actions.appendChild(makeChipButton("Delete", "", () => deleteAnnotation(annotation)));
+  actions.appendChild(makeChipButton("Cancel", "", closePopover));
+}
+
+function updateAnnotation(annotation, kind, noteText) {
+  annotation.kind = kind;
+  annotation.note = noteText.trim();
+  recordChange();
+}
+
+function deleteAnnotation(annotation) {
+  annotationList = annotationList.filter(candidate => candidate !== annotation);
+  recordChange();
+}
+
+function recordChange() {
+  unsavedChanges = true;
+  renderPanes();
+  renderAnnotationStatus();
+}
+
+function comparisonDirectoryPath() {
+  // On Windows the path of a file URL begins with a slash before the drive letter.
+  const path = decodeURIComponent(location.pathname).replace(/^\/(?=[A-Za-z]:)/, "");
+  return path.slice(0, path.lastIndexOf("/") + 1);
+}
+
+function canSaveFiles() {
+  return typeof window.showSaveFilePicker === "function";
+}
+
+function renderAnnotationStatus() {
+  document.getElementById("show-annotations-label").textContent = "Show annotations (" + annotationList.length + ")";
+  const status = document.getElementById("annotation-status");
+  status.className = "unsaved";
+  status.textContent = unsavedChanges ? "unsaved" : "";
+  const button = document.getElementById("save-annotations");
+  button.disabled = !canSaveFiles();
+  button.title = canSaveFiles()
+    ? "Write " + ANNOTATIONS_FILE_NAME + " into " + comparisonDirectoryPath()
+    : "This browser has no File System Access API, so the page cannot save annotations.";
+}
+
+async function chooseAnnotationsFile() {
+  return window.showSaveFilePicker({
+    suggestedName: ANNOTATIONS_FILE_NAME,
+    types: [{ description: "Annotations", accept: { "text/javascript": [".js"] } }],
+  });
+}
+
+async function saveAnnotations() {
+  if (!canSaveFiles()) return;
+  try {
+    if (!annotationsFileHandle) annotationsFileHandle = await chooseAnnotationsFile();
+    const writable = await annotationsFileHandle.createWritable();
+    await writable.write(annotationsFileText());
+    await writable.close();
+  } catch (error) {
+    if (error.name === "AbortError") return;
+    alert("Could not save " + ANNOTATIONS_FILE_NAME + ": " + error.message);
+    return;
+  }
+  unsavedChanges = false;
+  renderAnnotationStatus();
+}
+
+// The popover closes on mousedown, before a new selection ends, so that the
+// mouseup that ends the selection can open the next one.
+document.addEventListener("mousedown", closePopover);
+document.addEventListener("mouseup", handleSelectionEnd);
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePopover();
+});
+document.getElementById("save-annotations").addEventListener("click", saveAnnotations);
+document.getElementById("show-annotations").addEventListener("change", event => {
+  annotationsShown = event.target.checked;
+  renderPanes();
+});
+window.addEventListener("beforeunload", event => {
+  if (!unsavedChanges) return;
+  event.preventDefault();
+  event.returnValue = "";
+});
+
 document.title = promptFirstLine().slice(0, 60) + " — plain-language comparison";
 renderPrompt();
 renderAbout();
 renderSampleButtons();
+renderAnnotationStatus();
 panes = readArrangementFromHash() || defaultPanes();
 renderPanes();
 </script>

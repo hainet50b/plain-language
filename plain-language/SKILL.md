@@ -4,10 +4,10 @@ license: MIT OR Apache-2.0
 description: >-
   Read this skill before you write any reply of your own in a chat, except
   a one-line statement of a fact or result, and before composing, writing,
-  editing, reviewing, or translating any prose. It applies plain-language
-  principles to keep terminology consistent, make logical structure clear,
-  and use wording suited to the reader, even when the request does not
-  mention wording.
+  editing, reviewing, or translating any prose. It applies principles drawn
+  from plain-language guidance to keep terminology consistent, make logical
+  structure clear, and use wording suited to the reader, even when the
+  request does not mention wording.
 ---
 
 # plain-language
@@ -444,9 +444,10 @@ principle, whatever its resemblance to a retired one.
 
 ## Foundations
 
-These principles combine guidance from the sources below with the editorial
-preferences stated here. They do not claim compliance with a formal
-plain-language standard. Routine use does not require browsing the sources.
+These principles are drawn from the sources below and adjusted by the
+editorial preferences stated here. They do not claim compliance with a
+formal plain-language standard. Routine use does not require browsing the
+sources.
 
 - [Principles of plain language](https://digital.gov/guides/plain-language): adapt content, information order, and presentation to the reader's knowledge and purpose.
 - [Gopen and Swan, The Science of Scientific Writing](https://courses.ems.psu.edu/styleforstudents/print/c10_p6.html): use reader expectations, topic continuity, emphasis, and grammatical structure to guide edits.

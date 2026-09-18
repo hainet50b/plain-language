@@ -174,5 +174,9 @@ provide, even when each word is familiar.
 
 ## Foundations
 
+These principles are drawn from the sources below and combined with the
+preferences of the plain-language skill's author. Where a principle goes
+beyond the sources, the choice is the author's.
+
 - [Gopen and Swan, The Science of Scientific Writing](https://courses.ems.psu.edu/styleforstudents/print/c10_p6.html)
 - [Google, Write for a global audience](https://developers.google.com/style/translation)

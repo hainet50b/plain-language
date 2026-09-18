@@ -2,16 +2,17 @@
 
 ![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)
 
-An agent skill that applies plain-language principles to an AI coding
-agent's chat replies and to any prose it writes, edits, reviews, or
-translates. A skill is a directory of instructions an agent loads on demand,
-following the [Agent Skills specification](https://agentskills.io/specification).
+An agent skill that applies principles drawn from plain-language guidance
+to an AI coding agent's chat replies and to any prose it writes, edits,
+reviews, or translates. A skill is a directory of instructions an agent
+loads on demand, following the
+[Agent Skills specification](https://agentskills.io/specification).
 
-The principles come from plain-language guidance and editorial practice,
-selected and adjusted for that work. They cover the way an agent changes
-existing text as well as the text it produces, and they leave out
-conventional writing advice that backfires when agents follow it. They do
-not claim compliance with a formal plain-language standard.
+The principles are this project's own, drawn from plain-language guidance
+and editorial practice and adjusted for an agent's work. They cover the way
+an agent changes existing text as well as the text it produces, and they
+leave out conventional writing advice that backfires when agents follow it.
+They do not claim compliance with a formal plain-language standard.
 
 This repository also holds the tools that maintain the skill. One runs a
 prompt with and without the skill and shows the replies side by side.

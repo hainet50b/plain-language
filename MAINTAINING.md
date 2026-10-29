@@ -59,3 +59,8 @@ principle, whatever its resemblance to a retired one.
 | P304 | P402 | Only the rule against labels and colons remained, and it is about one sentence. |
 | P401 | P101 | Nouns for actions are common and clear; P101 covers those that hide the point. |
 | P702 | P701 | Merged into one principle about edits and translations. |
+| E101 | E501 | The model judges the reader's English on its own; E501 keeps the word choice. |
+| E301 | — | The model chooses active or passive voice well without a rule. |
+| E302 | — | The model places emphasis well without a rule. |
+| E401 | — | It asked for a "that" the reader does not need, against native usage and E303. |
+| E402 | — | It allowed both keeping and moving an interruption, so it gave no direction. |

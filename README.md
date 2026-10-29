@@ -74,14 +74,9 @@ and how to add, revise, and retire a principle.
 
 | ID | Principle |
 | --- | --- |
-| [E101](plain-language/references/english.md#e101-write-for-readers-without-assuming-advanced-english) | Write for readers who may lack advanced English usage or shared cultural knowledge. |
-| [E301](plain-language/references/english.md#e301-prefer-topic-continuity-over-active-voice) | Prefer topic continuity over active voice. |
-| [E302](plain-language/references/english.md#e302-place-emphasis-at-syntactic-closure) | Use syntactic closure to emphasize important new information. |
 | [E303](plain-language/references/english.md#e303-let-context-carry-what-the-reader-already-knows) | Use the bare noun when the context already identifies it. |
-| [E401](plain-language/references/english.md#e401-keep-relative-that) | Keep the object relative pronoun "that" even when omission is grammatical. |
-| [E402](plain-language/references/english.md#e402-keep-subjects-and-verbs-close-without-distortion) | Keep subjects and verbs close without changing intent or logical structure. |
-| [E501](plain-language/references/english.md#e501-use-familiar-language) | Use familiar words and standard sentence structures. |
-| [E502](plain-language/references/english.md#e502-avoid-culture-dependent-idioms) | Avoid idioms that require shared cultural knowledge. |
+| [E501](plain-language/references/english.md#e501-use-everyday-words) | Use the word a native speaker would use with a colleague. |
+| [E502](plain-language/references/english.md#e502-say-what-an-idiom-means) | Write the plain meaning instead of an idiom whose words do not give it. |
 
 </details>
 

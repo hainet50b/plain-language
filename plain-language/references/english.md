@@ -14,6 +14,7 @@ Each principle has application guidance, a reason, and an example.
 | [E101](#e101-write-for-readers-without-assuming-advanced-english) | Write for readers who may lack advanced English usage or shared cultural knowledge. |
 | [E301](#e301-prefer-topic-continuity-over-active-voice) | Prefer topic continuity over active voice. |
 | [E302](#e302-place-emphasis-at-syntactic-closure) | Use syntactic closure to emphasize important new information. |
+| [E303](#e303-let-context-carry-what-the-reader-already-knows) | Use the bare noun when the context already identifies it. |
 | [E401](#e401-keep-relative-that) | Keep the object relative pronoun "that" even when omission is grammatical. |
 | [E402](#e402-keep-subjects-and-verbs-close-without-distortion) | Keep subjects and verbs close without changing intent or logical structure. |
 | [E501](#e501-use-familiar-language) | Use familiar words and standard sentence structures. |
@@ -83,6 +84,15 @@ syntactic closure where readers tend to give information emphasis.
 The task provides context, and the property to check receives the final
 emphasis. The sentence can appear first in an answer that recommends an
 action.
+
+[Back to the principle index](#principle-index)
+
+### E303 Let context carry what the reader already knows
+
+When the context already tells the reader which one you mean, use the
+bare noun, without a "that" clause or an "of" phrase. The bare noun names
+the same concept, so it keeps the term consistent under
+[P501](../SKILL.md#p501-keep-terms-consistent).
 
 [Back to the principle index](#principle-index)
 

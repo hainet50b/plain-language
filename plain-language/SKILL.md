@@ -2,12 +2,14 @@
 name: plain-language
 license: MIT OR Apache-2.0
 description: >-
-  Read this skill before you write any reply of your own in a chat, except
-  a one-line statement of a fact or result, and before composing, writing,
-  editing, reviewing, or translating any prose. It applies principles drawn
-  from plain-language guidance to keep terminology consistent, make logical
-  structure clear, and use wording suited to the reader, even when the
-  request does not mention wording.
+  Read this skill before you write text a person will read, such as an
+  explanation, a report of progress or results, or a document, and before
+  you edit, review, or translate text. Read it even when the request does
+  not mention wording. It helps the text say plainly what matters most to
+  its reader at that moment, in the terms that reader uses, without the
+  hedges, asides, and other additions that bury the point. When you edit,
+  it keeps any meaning you were not asked to change. A one-line fact or
+  casual conversation does not call for it.
 ---
 
 # plain-language

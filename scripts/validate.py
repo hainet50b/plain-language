@@ -17,10 +17,11 @@ PRINCIPLE_FILES = [
     SKILL_DIRECTORY / "references" / "english.md",
     SKILL_DIRECTORY / "references" / "japanese.md",
 ]
-RETIRED_TABLE_FILE = SKILL_DIRECTORY / "SKILL.md"
+RETIRED_TABLE_FILE = REPOSITORY_ROOT / "MAINTAINING.md"
 # files outside the skill whose links into the principle files are checked
 FILES_LINKING_TO_PRINCIPLES = [
     REPOSITORY_ROOT / "README.md",
+    REPOSITORY_ROOT / "MAINTAINING.md",
     REPOSITORY_ROOT / "evals" / "README.md",
 ]
 

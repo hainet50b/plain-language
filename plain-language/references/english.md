@@ -7,9 +7,7 @@ throughout; when principles conflict, follow
 
 ## Principle index
 
-Each principle has application guidance, a reason, and an example. The
-letter and the first digit of an ID are explained under
-[Maintain the principles](../SKILL.md#maintain-the-principles) in SKILL.md.
+Each principle has application guidance, a reason, and an example.
 
 | ID | Principle |
 | --- | --- |

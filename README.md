@@ -30,6 +30,7 @@ principles.
 | [plain-language-compare/](plain-language-compare/SKILL.md) | Skill that runs one prompt with and without the plain-language skill, across versions of it, or across models, and shows the replies side by side. |
 | [plain-language-report/](plain-language-report/SKILL.md) | Skill that records an expression that feels unnatural to a reader as a report, with the prompt that produces it, by asking the reader what felt unnatural. |
 | [evals/](evals/README.md) | The reports and comparisons worth keeping. They serve as the regression suite and as evidence of what the skill does. |
+| [MAINTAINING.md](MAINTAINING.md) | How principle IDs are assigned, and the record of retired IDs. The agent does not read it. |
 | [scripts/validate.py](scripts/validate.py) | Checks that the principle files agree with themselves: IDs, index rows, levels, links, and the retired table. |
 
 ## Installation
@@ -48,9 +49,9 @@ To update the skill, run `gh skill update plain-language`.
 
 Every principle has an ID such as `P302` or `J601`. The letter names the
 language the principle applies to, and the first digit names the level of
-language the principle works at. The section
-[Maintain the principles](plain-language/SKILL.md#maintain-the-principles)
-in SKILL.md defines the letters and the levels.
+language the principle works at.
+[MAINTAINING.md](MAINTAINING.md#ids) defines the letters and the levels,
+and how to add, revise, and retire a principle.
 
 ## License
 

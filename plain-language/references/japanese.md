@@ -7,9 +7,7 @@
 
 ## 索引
 
-各原則には、方針と理由を示し、必要に応じて例を添える。ID の英字と
-先頭の数字の意味は、SKILL.md の
-[Maintain the principles](../SKILL.md#maintain-the-principles) が定める。
+各原則には、方針と理由を示し、必要に応じて例を添える。
 
 | ID | 原則 |
 | --- | --- |

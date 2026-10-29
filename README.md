@@ -47,7 +47,7 @@ To update the skill, run `gh skill update plain-language`.
 
 ## How the principles are organized
 
-Every principle has an ID such as `P302` or `J601`. The letter names the
+Every principle has an ID such as `P501` or `J601`. The letter names the
 language the principle applies to, and the first digit names the level of
 language the principle works at.
 [MAINTAINING.md](MAINTAINING.md#ids) defines the letters and the levels,

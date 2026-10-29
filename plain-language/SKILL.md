@@ -36,13 +36,11 @@ Each principle has application guidance, a reason, and an example.
 
 | ID | Principle |
 | --- | --- |
-| [P101](#p101-adapt-to-the-reader-and-task) | Match the explanation and amount of detail to the reader and task. |
+| [P101](#p101-say-the-point-itself) | Say the point itself, not the circumstances around it. |
 | [P102](#p102-resolve-conflicts-by-precedence) | Apply meaning and logical structure first, consistent terms second, and this file's principles before a language reference. |
 | [P103](#p103-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
-| [P201](#p201-give-reasons-and-select-background) | Normally give reasons; explain those reasons further when needed. |
-| [P202](#p202-choose-minimal-representative-examples) | Keep examples relevant, minimal, and representative for the reader. |
+| [P201](#p201-support-the-point-as-far-as-the-reader-needs) | Give the reasons and background the reader needs, and no more. |
 | [P301](#p301-make-references-clear) | Use pronouns when their references are clear in context. |
-| [P302](#p302-order-information-by-purpose) | Lead with conclusions for instructions and proposals; lead with premises to develop understanding. |
 | [P303](#p303-connect-information) | Connect new information to established context and make logical links clear. |
 | [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
@@ -53,24 +51,12 @@ Each principle has application guidance, a reason, and an example.
 
 ## 1xx Frame
 
-### P101 Adapt to the reader and task
+### P101 Say the point itself
 
-**Application.** Consider what the reader knows and what the text should
-help them do or understand. Assess language proficiency separately from
-subject knowledge. Provide the amount of detail that the task needs.
-Short answers, questions, and progress updates do not need extra sections
-or tables.
-
-When translating, follow [P702](#p702-edit-and-translate-transparently);
-do not add explanations that are absent from the source.
-
-**Reason.** Familiarity with a language, product, or local convention does
-not determine subject knowledge. Extra explanation can help one reader
-while distracting another.
-
-**Example.** For readers who know distributed systems but are less
-familiar with English, keep "idempotent" and simplify the surrounding
-sentences. Do not assume that they need a basic lesson in distributed systems.
+Decide what you mean to tell the reader, and write it in words that name
+it directly. Do not describe the point through the circumstances around
+it. The reader takes what a sentence says as its point, so a sentence about
+the circumstances delivers a different point from the one you meant.
 
 [Back to the principle index](#principle-index)
 
@@ -85,7 +71,7 @@ sentences. Do not assume that they need a basic lesson in distributed systems.
 The principles in this file take precedence over the principles in a
 language reference. When this order does not settle a conflict, judge by
 [P701](#p701-preserve-meaning) and
-[P101](#p101-adapt-to-the-reader-and-task).
+[P101](#p101-say-the-point-itself).
 
 **Reason.** Without a fixed order, the same conflict is settled differently
 from one passage to the next, and the text becomes inconsistent.
@@ -115,60 +101,12 @@ The explanation makes the metaphor understandable within the passage.
 
 ## 2xx Content
 
-### P201 Give reasons and select background
+### P201 Support the point as far as the reader needs
 
-**Application.** Normally explain the reasons for recommendations,
-evaluations, choices, and interpretations. In documents, normally support
-claims and decisions with reasons.
-
-- Omit reasons when they are already shared or serve no useful role, as
-  in an acknowledgment or a factual list.
-- Add background when readers need it to understand a reason or when the
-  task calls for deeper understanding.
-- Keep enough explanation to avoid a logical gap.
-- Use available evidence; do not invent a reason.
-- For translation, preserve the source under
-  [P702](#p702-edit-and-translate-transparently).
-
-Distinguish these roles according to the question:
-
-| Role | Function |
-| --- | --- |
-| Answer | Respond to the question. |
-| Reason | Explain why the answer holds. |
-| Background | Explain why the reason holds. |
-
-These roles do not prescribe the order of the response. Use
-[P302](#p302-order-information-by-purpose) to choose that order.
-
-**Reason.** Reasons let readers assess an answer. Background can deepen
-understanding, but readers do not always need it.
-
-**Example.** A restart requirement is the answer. Reading the setting only
-at startup is the reason. The design decision behind that behavior is
-background. If the question asks why that design was chosen, the design
-decision becomes part of the answer and its reason.
-
-[Back to the principle index](#principle-index)
-
-### P202 Choose minimal representative examples
-
-**Application.** When choosing examples, especially for parentheses:
-
-- Keep each example relevant to the passage's context.
-- Use only as many examples as the explanation needs.
-- Choose representative examples that most intended readers recognize.
-
-Prefer examples that do not require knowledge of an unusual product or
-case. Use one example when it is enough, and more when a distinction
-requires them. Move substantial explanations out of parentheses.
-
-**Reason.** An example should clarify the point without requiring readers
-to learn unrelated details.
-
-**Example.** In developer documentation, "structured data (such as JSON)"
-can supply one familiar example. A different audience may need an
-explanation of JSON.
+Give the reason that lets the reader trust the point or act on it. Add
+background only when the reader needs it to follow that reason or asked
+why. Say that one thing caused another only when you have checked it;
+otherwise say what you observed.
 
 [Back to the principle index](#principle-index)
 
@@ -193,28 +131,6 @@ The actor is unclear here:
 > The client sends a request to the server. It validates the request.
 
 If the server is the actor, replace "It" with "The server."
-
-[Back to the principle index](#principle-index)
-
-### P302 Order information by purpose
-
-**Application.** Choose the order for each passage according to its purpose.
-
-| Purpose | Order |
-| --- | --- |
-| Give instructions or make a proposal | State the conclusion or requested action with essential conditions, then give reasons. |
-| Develop understanding | Establish the necessary premises, explain their relationships, then reach the conclusion. |
-
-README files often use the first order; essays often use the second.
-Choose by the passage's purpose rather than fixing the order by document type.
-
-**Reason.** Instructions help readers decide what to do. Explanations help
-readers understand how a conclusion follows from its premises.
-
-**Example.** A setup instruction can begin with "Restart the service to
-apply the change," followed by the reason. An explanation of the same
-setting can first describe when the service reads it, then explain why a
-restart is required.
 
 [Back to the principle index](#principle-index)
 

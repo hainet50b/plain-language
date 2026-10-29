@@ -25,17 +25,17 @@ FILES_LINKING_TO_PRINCIPLES = [
     REPOSITORY_ROOT / "evals" / "README.md",
 ]
 
-# matches "P302" and "J601"; does not match "P02" or "P802"
+# matches "P501" and "J601"; does not match "P02" or "P802"
 PRINCIPLE_ID = re.compile(r"^[PJE][1-7]\d\d$")
-# matches "| [P302](#p302-order-information-by-purpose) | Lead with ... |"
+# matches "| [P501](#p501-keep-terms-consistent) | Use the same term ... |"
 INDEX_ROW = re.compile(r"^\| \[(?P<id>[PJE]\d{3})\]\((?P<anchor>#[^)]+)\) \| .+ \|$")
-# matches "### P302 Order information by purpose"
+# matches "### P501 Keep terms consistent"
 PRINCIPLE_HEADING = re.compile(r"^### (?P<id>[PJE]\d{3}) (?P<title>.+)$")
 # matches "## 3xx Discourse"; the digit is the level
 LEVEL_HEADING = re.compile(r"^## (?P<level>[1-7])xx (?P<name>\w+)$")
-# matches "# plain-language", "## Principle index", and "### P302 Order ..."
+# matches "# plain-language", "## Principle index", and "### P501 Keep ..."
 ANY_HEADING = re.compile(r"^#{1,3} (?P<text>.+)$")
-# matches "](#p701-preserve-meaning)" and "](../SKILL.md#p101-adapt-to-the-reader-and-task)"
+# matches "](#p701-preserve-meaning)" and "](../SKILL.md#p101-say-the-point-itself)"
 LINK_WITH_ANCHOR = re.compile(r"\]\((?P<target>[^)#]*)#(?P<anchor>[^)]+)\)")
 # matches "| Retired ID | Successor | Note |" (the header of the retired table)
 RETIRED_TABLE_HEADER = re.compile(r"^\| Retired ID \| Successor \| Note \|$")

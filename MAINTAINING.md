@@ -6,7 +6,7 @@ the skill directory.
 
 ## IDs
 
-An ID is a letter and three digits, such as `P302`. The letter names the
+An ID is a letter and three digits, such as `P501`. The letter names the
 language the principle applies to, and the first digit names the level: the
 smallest span of text a reader needs to tell whether the principle is
 followed.
@@ -50,3 +50,5 @@ principle, whatever its resemblance to a retired one.
 
 | Retired ID | Successor | Note |
 | --- | --- | --- |
+| P202 | — | The skill no longer prescribes how to choose examples. |
+| P302 | — | The skill no longer prescribes where the point goes. |

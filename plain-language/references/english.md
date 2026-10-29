@@ -26,9 +26,7 @@ Each principle has application guidance, a reason, and an example.
 
 **Application.** By default, write for readers who may lack advanced
 English usage or shared cultural knowledge. Assess language proficiency
-separately from subject knowledge under
-[P101](../SKILL.md#p101-adapt-to-the-reader-and-task); do not simplify the
-subject matter.
+separately from subject knowledge; do not simplify the subject matter.
 
 **Reason.** English output often reaches readers who use English as a
 second language. Advanced usage and cultural references cost them attention
@@ -70,8 +68,7 @@ point where a clause or sentence becomes complete.
 
 The stress position can contain a phrase or a longer unit, not just the
 last word. Use it for the new information that deserves emphasis, rather
-than for every new detail. Choose the order of the whole answer by purpose
-under [P302](../SKILL.md#p302-order-information-by-purpose).
+than for every new detail.
 
 **Reason.** Gopen and Swan describe the stress position as a point of
 syntactic closure where readers tend to give information emphasis.

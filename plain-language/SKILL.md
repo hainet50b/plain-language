@@ -47,7 +47,7 @@ Each principle has application guidance, a reason, and an example.
 | [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
 | [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
-| [P502](#p502-respect-technical-meaning) | Name technical concepts by their established terms. |
+| [P502](#p502-use-the-terms-readers-in-the-field-use) | Use the terms readers in the field use, written their way. |
 | [P701](#p701-preserve-meaning) | Preserve meaning and logical structure when improving style. |
 | [P702](#p702-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
 
@@ -290,56 +290,23 @@ cancellation is the action, and validation is its object.
 
 ### P501 Keep terms consistent
 
-**Application.** Use the same term for the same concept throughout the
-text, including objects and actions. Keep different concepts distinct.
-Respect established technical terms and exact product or project names.
-Do not introduce synonyms merely to avoid repetition.
-
-Use pronouns under [P301](#p301-make-references-clear) and related noun and
-verb forms under [P401](#p401-express-actions-with-verbs) when they preserve
-the same concept.
-
-**Reason.** A different term can suggest a different concept, making
-readers check whether the meaning has changed.
-
-**Example.** If "request" and "message" name the same object, use "request"
-in both sentences:
-
-> The client sends a request. The server validates the request.
+Use the same term for the same concept throughout the text, and different
+terms for different concepts. A new word makes the reader check whether
+the concept changed, so do not switch to a synonym to avoid repetition. A
+pronoun ([P301](#p301-make-references-clear)) or another form of the same
+word ([P401](#p401-express-actions-with-verbs)) keeps the concept.
 
 [Back to the principle index](#principle-index)
 
-### P502 Respect technical meaning
+### P502 Use the terms readers in the field use
 
-**Application.** Use established terms for technical concepts and preserve
-their specific meanings. Do not replace a technical term with a general
-expression merely because the reader's subject knowledge is unknown. When
-translating, use established terms in the target language where available.
-
-When a request or a source describes a concept instead of naming it, name
-the concept by its established term. The description is not a term that
-[P501](#p501-keep-terms-consistent) requires you to keep, and naming the
-concept does not add information under
-[P702](#p702-edit-and-translate-transparently).
-
-Add a definition, explanation, or example when the reader's knowledge and
-the passage's purpose call for it. When translating, follow
-[P702](#p702-edit-and-translate-transparently); do not add explanations that
-are absent from the source.
-
-**Reason.** An easier word may broaden a technical meaning or erase a
-necessary distinction. Established terms also let readers recognize a
-concept and connect it to their subject knowledge.
-
-**Example.** Keep "idempotent" rather than replacing it with "safe to repeat."
-If readers need an explanation, write:
-
-> This operation is idempotent: repeating it has the same effect as
-> performing it once.
-
-A request that describes an operation as one that "can be repeated with
-the same effect as running it once" describes idempotence. Write
-"idempotent" rather than repeating the description.
+Name a concept by the term readers in the field use in their documents,
+code, and conversation, written the way they write it. Write product and
+project names exactly as their owners do. Do not replace an established
+term with a general phrase or a literal translation. When a request or a
+source describes a concept instead of naming it, name the concept; the
+description is not a term [P501](#p501-keep-terms-consistent) asks you to
+keep. Explain a term only when the reader needs it.
 
 [Back to the principle index](#principle-index)
 

@@ -254,7 +254,7 @@
 判断した用語には、初出で補足を付けてよい。
 
 **理由** 専門用語は概念を正確に指し、読み手が自分の知識と結び付ける
-手がかりになる（[P502](../SKILL.md#p502-respect-technical-meaning)）。
+手がかりになる（[P502](../SKILL.md#p502-use-the-terms-readers-in-the-field-use)）。
 
 **例**
 

@@ -154,7 +154,7 @@ Explain a deliberate change in emphasis under P702.
 **Application.** Use familiar words and standard sentence structures when
 they preserve meaning. Follow
 [P501](../SKILL.md#p501-keep-terms-consistent) and
-[P502](../SKILL.md#p502-respect-technical-meaning) for technical terms and
+[P502](../SKILL.md#p502-use-the-terms-readers-in-the-field-use) for technical terms and
 exact product names.
 
 **Reason.** Familiar language lets readers focus on the content rather

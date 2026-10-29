@@ -40,4 +40,4 @@ that shows the expression the report describes.
 
 | Report | Comparison | Language | Status | Principles |
 | --- | --- | --- | --- | --- |
-| [2026-09-15-loanword-kanji-reply](reports/2026-09-15-loanword-kanji-reply.md) | [2026-09-16-loanword-kanji-reply](comparisons/2026-09-16-loanword-kanji-reply/) | Japanese | resolved | [P502](../plain-language/SKILL.md#p502-respect-technical-meaning), [J502](../plain-language/references/japanese.md#j502-英語由来の用語の表記を選ぶ) |
+| [2026-09-15-loanword-kanji-reply](reports/2026-09-15-loanword-kanji-reply.md) | [2026-09-16-loanword-kanji-reply](comparisons/2026-09-16-loanword-kanji-reply/) | Japanese | resolved | [P502](../plain-language/SKILL.md#p502-use-the-terms-readers-in-the-field-use), [J502](../plain-language/references/japanese.md#j502-英語由来の用語の表記を選ぶ) |

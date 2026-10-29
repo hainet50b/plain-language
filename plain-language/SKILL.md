@@ -14,9 +14,6 @@ description: >-
 
 # plain-language
 
-Apply these principles so readers can follow the text and assess its
-meaning.
-
 When writing, editing, or reviewing text in a language that has a language
 reference below, or translating into that language, also read that
 reference. The source language of a translation alone does not call for
@@ -27,19 +24,6 @@ its reference.
 | English | [references/english.md](references/english.md) |
 | Japanese | [references/japanese.md](references/japanese.md) |
 
-## Principle index
-
-Each principle has application guidance, a reason, and an example.
-
-| ID | Principle |
-| --- | --- |
-| [P101](#p101-say-the-point-itself) | Say the point itself, not the circumstances around it. |
-| [P201](#p201-support-the-point-as-far-as-the-reader-needs) | Give the reasons and background the reader needs, and no more. |
-| [P402](#p402-say-it-in-a-sentence) | Say how the parts relate in words, not with a label or a colon. |
-| [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
-| [P502](#p502-use-the-terms-readers-in-the-field-use) | Use the terms readers in the field use, written their way. |
-| [P701](#p701-keep-the-meaning-you-were-not-asked-to-change) | Keep the meaning you were not asked to change. |
-
 ## 1xx Frame
 
 ### P101 Say the point itself
@@ -48,8 +32,6 @@ Decide what you mean to tell the reader, and write it in words that name
 it directly. Do not describe the point through the circumstances around
 it. The reader takes what a sentence says as its point, so a sentence about
 the circumstances delivers a different point from the one you meant.
-
-[Back to the principle index](#principle-index)
 
 ## 2xx Content
 
@@ -60,8 +42,6 @@ background only when the reader needs it to follow that reason or asked
 why. Say that one thing caused another only when you have checked it;
 otherwise say what you observed.
 
-[Back to the principle index](#principle-index)
-
 ## 4xx Sentence
 
 ### P402 Say it in a sentence
@@ -71,8 +51,6 @@ not open a sentence or a list item with a word that only names what
 follows, and do not join two parts with a colon. Say the relation in words
 instead.
 
-[Back to the principle index](#principle-index)
-
 ## 5xx Lexicon
 
 ### P501 Keep terms consistent
@@ -81,8 +59,6 @@ Use the same term for the same concept throughout the text, and different
 terms for different concepts. A new word makes the reader check whether
 the concept changed, so do not switch to a synonym to avoid repetition. A
 pronoun or another form of the same word keeps the concept.
-
-[Back to the principle index](#principle-index)
 
 ### P502 Use the terms readers in the field use
 
@@ -94,8 +70,6 @@ source describes a concept instead of naming it, name the concept; the
 description is not a term [P501](#p501-keep-terms-consistent) asks you to
 keep. Explain a term only when the reader needs it.
 
-[Back to the principle index](#principle-index)
-
 ## 7xx Change
 
 ### P701 Keep the meaning you were not asked to change
@@ -104,15 +78,3 @@ When you edit or translate, keep what the text claims, including which
 point is the main one, its conditions, how certain it is, how strong its
 requirements are, and its causes. Change only the wording and
 presentation. In a translation, add nothing the source does not say.
-
-[Back to the principle index](#principle-index)
-
-## Foundations
-
-These principles are drawn from the sources below and adjusted by the
-editorial preferences stated here. They do not claim compliance with a
-formal plain-language standard. Routine use does not require browsing the
-sources.
-
-- [Principles of plain language](https://digital.gov/guides/plain-language): adapt content, information order, and presentation to the reader's knowledge and purpose.
-- [Gopen and Swan, The Science of Scientific Writing](https://courses.ems.psu.edu/styleforstudents/print/c10_p6.html): use reader expectations, topic continuity, emphasis, and grammatical structure to guide edits.

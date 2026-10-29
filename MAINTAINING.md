@@ -37,8 +37,8 @@ how the principle handles that scope keeps the ID, even when the heading
 changes. Changing the scope retires the ID and assigns a new one. Give a
 new principle the number after the highest one assigned so far within its
 level, so that a retired number stays taken, and never renumber an existing
-principle; gaps are expected. Update an index entry and its section
-together.
+principle; gaps are expected. Update a principle's row in the index in
+[README.md](README.md#principles) together with its section.
 
 ## Retired IDs
 

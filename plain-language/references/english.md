@@ -1,23 +1,8 @@
 # English principles
 
 Apply these additions when writing, editing, reviewing, or translating into
-English. Use the [shared principles](../SKILL.md#principle-index)
+English. Use the [shared principles](../SKILL.md)
 throughout.
-
-## Principle index
-
-Each principle has application guidance, a reason, and an example.
-
-| ID | Principle |
-| --- | --- |
-| [E101](#e101-write-for-readers-without-assuming-advanced-english) | Write for readers who may lack advanced English usage or shared cultural knowledge. |
-| [E301](#e301-prefer-topic-continuity-over-active-voice) | Prefer topic continuity over active voice. |
-| [E302](#e302-place-emphasis-at-syntactic-closure) | Use syntactic closure to emphasize important new information. |
-| [E303](#e303-let-context-carry-what-the-reader-already-knows) | Use the bare noun when the context already identifies it. |
-| [E401](#e401-keep-relative-that) | Keep the object relative pronoun "that" even when omission is grammatical. |
-| [E402](#e402-keep-subjects-and-verbs-close-without-distortion) | Keep subjects and verbs close without changing intent or logical structure. |
-| [E501](#e501-use-familiar-language) | Use familiar words and standard sentence structures. |
-| [E502](#e502-avoid-culture-dependent-idioms) | Avoid idioms that require shared cultural knowledge. |
 
 ## 1xx Frame
 
@@ -33,8 +18,6 @@ that the content needs.
 
 **Example.** Keep "idempotent" for readers who know distributed systems,
 and write "use" rather than "utilize" around it.
-
-[Back to the principle index](#principle-index)
 
 ## 3xx Discourse
 
@@ -55,8 +38,6 @@ the object that the paragraph explains.
 
 The report remains the topic, and the second sentence still identifies
 the actor.
-
-[Back to the principle index](#principle-index)
 
 ### E302 Place emphasis at syntactic closure
 
@@ -81,16 +62,12 @@ The task provides context, and the property to check receives the final
 emphasis. The sentence can appear first in an answer that recommends an
 action.
 
-[Back to the principle index](#principle-index)
-
 ### E303 Let context carry what the reader already knows
 
 When the context already tells the reader which one you mean, use the
 bare noun, without a "that" clause or an "of" phrase. The bare noun names
 the same concept, so it keeps the term consistent under
 [P501](../SKILL.md#p501-keep-terms-consistent).
-
-[Back to the principle index](#principle-index)
 
 ## 4xx Sentence
 
@@ -112,8 +89,6 @@ readers identify the sentence structure.
 | Grammatically valid, but avoid here | The report the server generated contains three errors. |
 
 In both sentences, the report is the object of "generated."
-
-[Back to the principle index](#principle-index)
 
 ### E402 Keep subjects and verbs close without distortion
 
@@ -138,8 +113,6 @@ preserves the intended structure:
 - State the validation claim first and give the network details afterward.
 - Move the network details to a section that explains the network.
 
-[Back to the principle index](#principle-index)
-
 ## 5xx Lexicon
 
 ### E501 Use familiar language
@@ -156,8 +129,6 @@ than spend attention interpreting the expression.
 **Example.** Use "use" instead of "utilize" when both express the intended
 meaning.
 
-[Back to the principle index](#principle-index)
-
 ### E502 Avoid culture-dependent idioms
 
 **Application.** Generally avoid idioms and metaphors that require
@@ -170,14 +141,3 @@ provide, even when each word is familiar.
 
 **Example.** Use "We gave the migration a lower priority" instead of
 "We put the migration on the back burner."
-
-[Back to the principle index](#principle-index)
-
-## Foundations
-
-These principles are drawn from the sources below and combined with the
-preferences of the plain-language skill's author. Where a principle goes
-beyond the sources, the choice is the author's.
-
-- [Gopen and Swan, The Science of Scientific Writing](https://courses.ems.psu.edu/styleforstudents/print/c10_p6.html)
-- [Google, Write for a global audience](https://developers.google.com/style/translation)

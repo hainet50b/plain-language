@@ -18,6 +18,7 @@ PRINCIPLE_FILES = [
     SKILL_DIRECTORY / "references" / "japanese.md",
 ]
 RETIRED_TABLE_FILE = REPOSITORY_ROOT / "MAINTAINING.md"
+INDEX_FILE = REPOSITORY_ROOT / "README.md"
 # files outside the skill whose links into the principle files are checked
 FILES_LINKING_TO_PRINCIPLES = [
     REPOSITORY_ROOT / "README.md",
@@ -27,13 +28,13 @@ FILES_LINKING_TO_PRINCIPLES = [
 
 # matches "P501" and "J601"; does not match "P02" or "P802"
 PRINCIPLE_ID = re.compile(r"^[PJE][1-7]\d\d$")
-# matches "| [P501](#p501-keep-terms-consistent) | Use the same term ... |"
-INDEX_ROW = re.compile(r"^\| \[(?P<id>[PJE]\d{3})\]\((?P<anchor>#[^)]+)\) \| .+ \|$")
+# matches "| [P501](plain-language/SKILL.md#p501-keep-terms-consistent) | Use the same term ... |"
+INDEX_ROW = re.compile(r"^\| \[(?P<id>[PJE]\d{3})\]\((?P<target>[^)#]+)#(?P<anchor>[^)]+)\) \| .+ \|$")
 # matches "### P501 Keep terms consistent"
 PRINCIPLE_HEADING = re.compile(r"^### (?P<id>[PJE]\d{3}) (?P<title>.+)$")
 # matches "## 3xx Discourse"; the digit is the level
 LEVEL_HEADING = re.compile(r"^## (?P<level>[1-7])xx (?P<name>\w+)$")
-# matches "# plain-language", "## Principle index", and "### P501 Keep ..."
+# matches "# plain-language", "## 1xx Frame", and "### P501 Keep ..."
 ANY_HEADING = re.compile(r"^#{1,3} (?P<text>.+)$")
 # matches "](#p701-keep-the-meaning-you-were-not-asked-to-change)" and "](../SKILL.md#p101-say-the-point-itself)"
 LINK_WITH_ANCHOR = re.compile(r"\]\((?P<target>[^)#]*)#(?P<anchor>[^)]+)\)")
@@ -44,10 +45,6 @@ RETIRED_ROW = re.compile(r"^\| (?P<id>[PJE]\d{3}) \| (?P<successor>[^|]+?) \| .+
 # matches "```python" and "```" (fences that open or close a code block)
 CODE_FENCE = re.compile(r"^```")
 
-BACK_TO_INDEX_LINKS = {
-    "[Back to the principle index](#principle-index)",
-    "[索引に戻る](#索引)",
-}
 NO_SUCCESSOR = "—"
 
 
@@ -56,7 +53,6 @@ class Principle:
     id: str
     title: str
     level_of_section: str
-    last_line: str
 
 
 @dataclass
@@ -64,7 +60,6 @@ class PrincipleFile:
     path: Path
     lines: list[str]
     anchors: set[str]
-    index_ids: dict[str, str]
     principles: list[Principle]
 
 
@@ -101,29 +96,16 @@ def collect_anchors(lines: list[str]) -> set[str]:
     return anchors
 
 
-def collect_index_ids(lines: list[str]) -> dict[str, str]:
-    anchor_by_id: dict[str, str] = {}
-    for line in lines:
-        row = INDEX_ROW.match(line)
-        if row is None:
-            continue
-        anchor_by_id[row.group("id")] = row.group("anchor").lstrip("#")
-    return anchor_by_id
-
-
 def collect_principles(lines: list[str]) -> list[Principle]:
     principles: list[Principle] = []
     current_level = ""
-    inside_principle = False
     for line in lines:
         level_heading = LEVEL_HEADING.match(line)
         if level_heading is not None:
             current_level = level_heading.group("level")
-            inside_principle = False
             continue
         if line.startswith("## "):
             current_level = ""
-            inside_principle = False
             continue
         principle_heading = PRINCIPLE_HEADING.match(line)
         if principle_heading is not None:
@@ -131,12 +113,7 @@ def collect_principles(lines: list[str]) -> list[Principle]:
                 id=principle_heading.group("id"),
                 title=principle_heading.group("title"),
                 level_of_section=current_level,
-                last_line="",
             ))
-            inside_principle = True
-            continue
-        if inside_principle and line.strip():
-            principles[-1].last_line = line.strip()
     return principles
 
 
@@ -146,7 +123,6 @@ def load_principle_file(path: Path) -> PrincipleFile:
         path=path,
         lines=lines,
         anchors=collect_anchors(lines),
-        index_ids=collect_index_ids(lines),
         principles=collect_principles(lines),
     )
 
@@ -179,6 +155,31 @@ def check_id_format(files: list[PrincipleFile]) -> list[str]:
     return problems
 
 
+def check_index_matches_sections(index_lines: list[str], files: list[PrincipleFile]) -> list[str]:
+    problems: list[str] = []
+    file_by_id = {principle.id: (file, principle) for file in files for principle in file.principles}
+    index_ids: set[str] = set()
+    for line in index_lines:
+        row = INDEX_ROW.match(line)
+        if row is None:
+            continue
+        principle_id = row.group("id")
+        index_ids.add(principle_id)
+        found = file_by_id.get(principle_id)
+        if found is None:
+            problems.append(f"index: {principle_id} is in the index but has no section")
+            continue
+        file, principle = found
+        expected_target = display_path(file.path)
+        expected_anchor = github_anchor(f"{principle.id} {principle.title}")
+        if row.group("target") == expected_target and row.group("anchor") == expected_anchor:
+            continue
+        problems.append(f"index: {principle_id} links to {row.group('target')}#{row.group('anchor')}, section is {expected_target}#{expected_anchor}")
+    for principle_id in sorted(set(file_by_id) - index_ids):
+        problems.append(f"index: {principle_id} has a section but is not in the index")
+    return problems
+
+
 def check_ids_unique(files: list[PrincipleFile]) -> list[str]:
     problems: list[str] = []
     file_by_id: dict[str, str] = {}
@@ -189,22 +190,6 @@ def check_ids_unique(files: list[PrincipleFile]) -> list[str]:
                 problems.append(f"{display_path(file.path)}: {principle.id} also appears in {earlier_file}")
                 continue
             file_by_id[principle.id] = display_path(file.path)
-    return problems
-
-
-def check_index_matches_sections(file: PrincipleFile) -> list[str]:
-    problems: list[str] = []
-    section_ids = {principle.id for principle in file.principles}
-    for principle_id in sorted(set(file.index_ids) - section_ids):
-        problems.append(f"{display_path(file.path)}: {principle_id} is in the index but has no section")
-    for principle_id in sorted(section_ids - set(file.index_ids)):
-        problems.append(f"{display_path(file.path)}: {principle_id} has a section but is not in the index")
-    for principle in file.principles:
-        expected_anchor = github_anchor(f"{principle.id} {principle.title}")
-        actual_anchor = file.index_ids.get(principle.id)
-        if actual_anchor is None or actual_anchor == expected_anchor:
-            continue
-        problems.append(f"{display_path(file.path)}: index links {principle.id} to #{actual_anchor}, section is #{expected_anchor}")
     return problems
 
 
@@ -233,15 +218,6 @@ def check_links_resolve(file: PrincipleFile, files_by_path: dict[Path, Principle
     return problems
 
 
-def check_back_to_index_links(file: PrincipleFile) -> list[str]:
-    problems: list[str] = []
-    for principle in file.principles:
-        if principle.last_line in BACK_TO_INDEX_LINKS:
-            continue
-        problems.append(f"{display_path(file.path)}: {principle.id} does not end with a link back to the index")
-    return problems
-
-
 def check_retired_table(lines: list[str], current_ids: set[str]) -> list[str]:
     problems: list[str] = []
     for retired_id, successor in collect_retired_rows(lines):
@@ -259,12 +235,12 @@ def run_all_checks(files: list[PrincipleFile], linking_files: list[PrincipleFile
     problems.extend(check_ids_unique(files))
     files_by_path = {file.path: file for file in files + linking_files}
     for file in files:
-        problems.extend(check_index_matches_sections(file))
         problems.extend(check_sections_under_matching_level(file))
         problems.extend(check_links_resolve(file, files_by_path))
-        problems.extend(check_back_to_index_links(file))
     for linking_file in linking_files:
         problems.extend(check_links_resolve(linking_file, files_by_path))
+    index_lines = strip_code_blocks(INDEX_FILE.read_text(encoding="utf-8").splitlines())
+    problems.extend(check_index_matches_sections(index_lines, files))
     current_ids = {principle.id for file in files for principle in file.principles}
     retired_table_lines = RETIRED_TABLE_FILE.read_text(encoding="utf-8").splitlines()
     problems.extend(check_retired_table(retired_table_lines, current_ids))

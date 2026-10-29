@@ -164,7 +164,7 @@ meaning.
 **Application.** Generally avoid idioms and metaphors that require
 familiarity with English-speaking cultures. Allow metaphors that readers
 can understand from the passage's context and that help the explanation
-or voice, as described in [P103](../SKILL.md#p103-preserve-useful-voice).
+or voice.
 
 **Reason.** An idiom can require knowledge that the passage does not
 provide, even when each word is familiar.

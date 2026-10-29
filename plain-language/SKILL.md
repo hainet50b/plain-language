@@ -38,11 +38,10 @@ Each principle has application guidance, a reason, and an example.
 | --- | --- |
 | [P101](#p101-say-the-point-itself) | Say the point itself, not the circumstances around it. |
 | [P102](#p102-resolve-conflicts-by-precedence) | Apply meaning and logical structure first, consistent terms second, and this file's principles before a language reference. |
-| [P103](#p103-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
 | [P201](#p201-support-the-point-as-far-as-the-reader-needs) | Give the reasons and background the reader needs, and no more. |
 | [P301](#p301-make-references-clear) | Use pronouns when their references are clear in context. |
-| [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
+| [P402](#p402-say-it-in-a-sentence) | Say how the parts relate in words, not with a label or a colon. |
 | [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
 | [P502](#p502-use-the-terms-readers-in-the-field-use) | Use the terms readers in the field use, written their way. |
 | [P701](#p701-keep-the-meaning-you-were-not-asked-to-change) | Keep the meaning you were not asked to change. |
@@ -76,24 +75,6 @@ from one passage to the next, and the text becomes inconsistent.
 
 **Example.** Replacing a repeated term with a synonym would improve the
 rhythm of a sentence but break P501. Keep the term.
-
-[Back to the principle index](#principle-index)
-
-### P103 Preserve useful voice
-
-**Application.** Preserve perspective, rhythm, metaphor, and the development
-of an experience when they serve an essay's purpose. Use figurative language
-that readers can understand from the passage's context.
-
-**Reason.** An essay can communicate through personal voice and the
-development of an idea as well as through facts.
-
-**Example.**
-
-> The configuration file had become an outdated map: it still listed
-> features that no longer existed.
-
-The explanation makes the metaphor understandable within the passage.
 
 [Back to the principle index](#principle-index)
 
@@ -132,37 +113,6 @@ If the server is the actor, replace "It" with "The server."
 
 [Back to the principle index](#principle-index)
 
-### P304 Match form to logical structure
-
-**Application.** Choose the form that makes the relationships easy to follow.
-
-| Relationship | Form |
-| --- | --- |
-| One condition with a few closely related actions | One sentence, if readers can follow it easily. |
-| Short details about one of those actions | A separate sentence that clearly identifies the action or its result. |
-| Many actions, branches, or complex nesting | A list that shows the relevant groups and levels. |
-| Steps in a sequence | A numbered list. |
-| Items compared on the same dimensions | A table. |
-| Ideas developed through an explanation | Connected paragraphs. |
-
-Keep parallel items parallel in wording and level of detail. Avoid fixed
-word counts and item thresholds. Use two sentences when they show the
-structure more simply than a list.
-
-**Reason.** Sentence boundaries and visual groups show which conditions,
-actions, and details belong together.
-
-**Example.**
-
-> If validation fails, the system keeps the existing settings and displays
-> an error. The error includes the field name and explains why validation
-> failed.
-
-The first sentence groups two actions under one condition. The second
-adds two details about the error.
-
-[Back to the principle index](#principle-index)
-
 ## 4xx Sentence
 
 ### P401 Express actions with verbs
@@ -178,6 +128,15 @@ adding meaning.
 **Example.** Prefer "The server validates the request" to "The server
 performs validation of the request." Keep "The server cancels validation":
 cancellation is the action, and validation is its object.
+
+[Back to the principle index](#principle-index)
+
+### P402 Say it in a sentence
+
+Write what you mean in sentences whose words say how the parts relate. Do
+not open a sentence or a list item with a word that only names what
+follows, and do not join two parts with a colon. Say the relation in words
+instead.
 
 [Back to the principle index](#principle-index)
 

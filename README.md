@@ -2,17 +2,18 @@
 
 ![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)
 
-An agent skill that helps an AI coding agent say plainly what matters
-most to the reader at that moment. It applies to the explanations,
-reports, and documents the agent writes, and to any text it edits,
-reviews, or translates. A skill is a directory of instructions an agent
-loads on demand, following the
+An agent skill that helps an AI coding agent say its point itself, in
+the reader's terms. It applies to the explanations, reports, and
+documents the agent writes, and to any text it edits, reviews, or
+translates. A skill is a directory of instructions an agent loads on
+demand, following the
 [Agent Skills specification](https://agentskills.io/specification).
 
-Current models write sentences that are correct one by one, yet the point
-often fails to come through. Hedges, qualifications, and asides pile up
-around it, terms come from outside the reader's field, and an edit changes
-meaning nobody asked to change. The skill aims at that gap.
+Current models write sentences that are correct one by one, yet the reader
+often takes away a different point from the one meant. The text talks about
+the circumstances around the point instead of the point, uses terms from
+outside the reader's field, or, in an edit, changes meaning nobody asked to
+change. The skill targets these three habits.
 
 This repository also holds the tools that maintain the skill. One runs a
 prompt with and without the skill and shows the replies side by side.

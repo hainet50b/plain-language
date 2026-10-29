@@ -5,11 +5,11 @@ description: >-
   Read this skill before you write text a person will read, such as an
   explanation, a report of progress or results, or a document, and before
   you edit, review, or translate text. Read it even when the request does
-  not mention wording. It helps the text say plainly what matters most to
-  its reader at that moment, in the terms that reader uses, without the
-  hedges, asides, and other additions that bury the point. When you edit,
-  it keeps any meaning you were not asked to change. A one-line fact or
-  casual conversation does not call for it.
+  not mention wording. It helps the text say its point itself, in the
+  terms the reader uses, instead of describing the circumstances around
+  the point. When you edit or translate, it keeps any meaning you were not
+  asked to change. A one-line fact or casual conversation does not call
+  for it.
 ---
 
 # plain-language

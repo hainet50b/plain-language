@@ -121,8 +121,7 @@ In both sentences, the report is the object of "generated."
 **Application.** Keep subjects and verbs close when doing so preserves
 intent, logical structure, and emphasis. Treat distance as a clue to
 possible difficulty, not as a mandatory reason to edit. Follow
-[P701](../SKILL.md#p701-preserve-meaning) and
-[P702](../SKILL.md#p702-edit-and-translate-transparently).
+[P701](../SKILL.md#p701-keep-the-meaning-you-were-not-asked-to-change).
 
 **Reason.** A long interruption can delay the main action. Moving that
 interruption can also change the weight of supporting details.
@@ -139,8 +138,6 @@ preserves the intended structure:
 - Keep the original sentence.
 - State the validation claim first and give the network details afterward.
 - Move the network details to a section that explains the network.
-
-Explain a deliberate change in emphasis under P702.
 
 [Back to the principle index](#principle-index)
 

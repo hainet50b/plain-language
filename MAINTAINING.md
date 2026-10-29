@@ -52,3 +52,5 @@ principle, whatever its resemblance to a retired one.
 | --- | --- | --- |
 | P202 | — | The skill no longer prescribes how to choose examples. |
 | P302 | — | The skill no longer prescribes where the point goes. |
+| P303 | P701 | P701 covers unsupported causes in an edit; P201 covers them in new text. |
+| P702 | P701 | Merged into one principle about edits and translations. |

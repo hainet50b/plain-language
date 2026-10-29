@@ -41,13 +41,11 @@ Each principle has application guidance, a reason, and an example.
 | [P103](#p103-preserve-useful-voice) | Preserve voice and figurative language that serve the passage. |
 | [P201](#p201-support-the-point-as-far-as-the-reader-needs) | Give the reasons and background the reader needs, and no more. |
 | [P301](#p301-make-references-clear) | Use pronouns when their references are clear in context. |
-| [P303](#p303-connect-information) | Connect new information to established context and make logical links clear. |
 | [P304](#p304-match-form-to-logical-structure) | Choose sentences, paragraphs, lists, and tables to show logical relationships. |
 | [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
 | [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
 | [P502](#p502-use-the-terms-readers-in-the-field-use) | Use the terms readers in the field use, written their way. |
-| [P701](#p701-preserve-meaning) | Preserve meaning and logical structure when improving style. |
-| [P702](#p702-edit-and-translate-transparently) | Improve presentation, explain changes in emphasis, and confirm changes in meaning. |
+| [P701](#p701-keep-the-meaning-you-were-not-asked-to-change) | Keep the meaning you were not asked to change. |
 
 ## 1xx Frame
 
@@ -64,13 +62,13 @@ the circumstances delivers a different point from the one you meant.
 
 **Application.** When principles conflict, apply them in this order:
 
-1. Preserve meaning and logical structure ([P701](#p701-preserve-meaning)).
+1. Preserve meaning and logical structure ([P701](#p701-keep-the-meaning-you-were-not-asked-to-change)).
 2. Keep terms consistent ([P501](#p501-keep-terms-consistent)).
 3. Apply the remaining principles.
 
 The principles in this file take precedence over the principles in a
 language reference. When this order does not settle a conflict, judge by
-[P701](#p701-preserve-meaning) and
+[P701](#p701-keep-the-meaning-you-were-not-asked-to-change) and
 [P101](#p101-say-the-point-itself).
 
 **Reason.** Without a fixed order, the same conflict is settled differently
@@ -131,25 +129,6 @@ The actor is unclear here:
 > The client sends a request to the server. It validates the request.
 
 If the server is the actor, replace "It" with "The server."
-
-[Back to the principle index](#principle-index)
-
-### P303 Connect information
-
-**Application.** Use established context to introduce new information.
-Keep the topic easy to follow and make necessary logical relationships
-explicit. Place emphasis where it supports the intended point. State a
-causal relationship only when the available information supports it.
-
-**Reason.** Readers need to understand how each new point relates to the
-preceding discussion. Adding an unsupported connection changes the meaning.
-
-**Example.** These statements alone do not establish a cause:
-
-> The file is missing. Processing stopped.
-
-Use "Processing stopped because the file is missing" only when the missing
-file is the established cause.
 
 [Back to the principle index](#principle-index)
 
@@ -228,55 +207,12 @@ keep. Explain a term only when the reader needs it.
 
 ## 7xx Change
 
-### P701 Preserve meaning
+### P701 Keep the meaning you were not asked to change
 
-**Application.** Preserve the intended meaning and logical structure,
-including:
-
-- The relationship between main points and supporting details.
-- The scope of conditions and exceptions.
-- Quantities and uncertainty.
-- The strength of claims and requirements.
-
-Give these relationships and distinctions priority over brevity and
-grammatical preferences. Use [P702](#p702-edit-and-translate-transparently)
-to decide when a deliberate change needs explanation or confirmation.
-
-**Reason.** An edit can retain the same facts while changing what a claim
-means or how much weight a supporting detail receives.
-
-**Example.** Keep "may fail" when failure is uncertain. Changing it to
-"will fail" makes the claim stronger.
-
-[Back to the principle index](#principle-index)
-
-### P702 Edit and translate transparently
-
-**Application.** Improve wording, word order, and presentation. Split or
-join sentences only where a sentence would otherwise be hard to read, and
-keep its claim, topic, and modifier attachments. Preserve source
-information; do not add facts, reasons, or explanations to make the
-translation more helpful.
-
-Handle changes according to what they affect:
-
-| Change | Action |
-| --- | --- |
-| Improve presentation while preserving intent, emphasis, and logical relationships | Make the change without a separate approval step. |
-| Preserve meaning but change emphasis or how the argument is presented | Make the change, then briefly explain what changed and why. |
-| Resolve a material ambiguity or change a claim, condition, requirement strength, or causal relationship | Ask first unless the user has already explicitly authorized the change. |
-
-Keep editorial explanations separate from the edited or translated text.
-Do not silently select an ambiguous actor or condition. Treat moving a
-point between main claim and supporting detail, in either direction, as a
-change in emphasis, even when the facts remain unchanged.
-
-**Reason.** Editing can improve presentation while also changing how readers
-interpret the text. Authors need visibility into those changes.
-
-**Example.** Moving a conclusion to the beginning can be explained after
-the edit. Changing "Save after validation" to "Save only if validation
-succeeds" adds a condition and requires confirmation of the intended meaning.
+When you edit or translate, keep what the text claims, including which
+point is the main one, its conditions, how certain it is, how strong its
+requirements are, and its causes. Change only the wording and
+presentation. In a translation, add nothing the source does not say.
 
 [Back to the principle index](#principle-index)
 

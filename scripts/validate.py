@@ -35,7 +35,7 @@ PRINCIPLE_HEADING = re.compile(r"^### (?P<id>[PJE]\d{3}) (?P<title>.+)$")
 LEVEL_HEADING = re.compile(r"^## (?P<level>[1-7])xx (?P<name>\w+)$")
 # matches "# plain-language", "## Principle index", and "### P501 Keep ..."
 ANY_HEADING = re.compile(r"^#{1,3} (?P<text>.+)$")
-# matches "](#p701-preserve-meaning)" and "](../SKILL.md#p101-say-the-point-itself)"
+# matches "](#p701-keep-the-meaning-you-were-not-asked-to-change)" and "](../SKILL.md#p101-say-the-point-itself)"
 LINK_WITH_ANCHOR = re.compile(r"\]\((?P<target>[^)#]*)#(?P<anchor>[^)]+)\)")
 # matches "| Retired ID | Successor | Note |" (the header of the retired table)
 RETIRED_TABLE_HEADER = re.compile(r"^\| Retired ID \| Successor \| Note \|$")

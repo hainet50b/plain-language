@@ -64,3 +64,17 @@ principle, whatever its resemblance to a retired one.
 | E302 | — | The model places emphasis well without a rule. |
 | E401 | — | It asked for a "that" the reader does not need, against native usage and E303. |
 | E402 | — | It allowed both keeping and moving an interruption, so it gave no direction. |
+| J101 | P502 | P502 asks for the reader's terms and explains a term only when the reader needs it. |
+| J102 | — | The model keeps one style and matches the document without a rule. |
+| J301 | — | The model keeps the topic without a rule, as with E301. |
+| J302 | — | The model marks cause and contrast and rarely adds a bare "また" (1 in 128 sentences without the skill). |
+| J303 | — | The model keeps list items in one form without a rule. |
+| J401 | — | "が" that joins clauses is natural Japanese, and the model used none that misled the reader (0 in 128 sentences). |
+| J501 | P501 | It repeated P501. |
+| J503 | P502 | It repeated P502. |
+| J504 | P502 | Spelling out every abbreviation added noise; P502 explains a term only when the reader needs it. |
+| J505 | P502 | P502 covers names written as their owners write them. |
+| J601 | — | The model already writes function words in hiragana. |
+| J602 | — | The model rarely mixes in wrong kanji. |
+| J603 | P501 | P501 keeps one spelling for one term. |
+| J604 | J605 | J605 limits the rule to technical text. |

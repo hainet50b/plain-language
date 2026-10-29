@@ -85,22 +85,9 @@ and how to add, revise, and retire a principle.
 
 | ID | Principle |
 | --- | --- |
-| [J101](plain-language/references/japanese.md#j101-母語話者で専門知識のある読み手を想定する) | 既定の読み手を、日本語を母語とし、分野の専門知識を持つ人とする。 |
-| [J102](plain-language/references/japanese.md#j102-文体を文書の種類に合わせて統一する) | 文体は文書の種類を参考に選び、文書内で統一する。敬語は簡素にする。 |
-| [J301](plain-language/references/japanese.md#j301-主題を保つ) | 段落の主題を各文で保ち、主題の語を別の語の従属要素にしない。 |
-| [J302](plain-language/references/japanese.md#j302-因果と逆接を接続詞で示す) | 因果と逆接は接続詞で明示し、並列と添加は句点に任せる。 |
-| [J303](plain-language/references/japanese.md#j303-箇条書きの形式をそろえる) | 箇条書きの各項目は、短い句か文のどちらかにそろえる。句には句点を付けず、文には付ける。 |
-| [J401](plain-language/references/japanese.md#j401-接続助詞がを逆接と対比に使う) | 接続助詞「が」は逆接と対比に使い、前置きは接続詞や副詞句に置き換える。 |
 | [J402](plain-language/references/japanese.md#j402-読点で係り受けを変えない) | 読点は係り受けを変えない範囲で打ち、係り受けを示す必要のない位置には打たない。 |
-| [J501](plain-language/references/japanese.md#j501-用語を概念で統一する) | 同じ概念には同じ用語を使い、同じ語が異なる概念を指すときは区別する。 |
 | [J502](plain-language/references/japanese.md#j502-英語由来の用語の表記を選ぶ) | 英語由来の専門用語とビジネス用語は、英単語を訳さず、概念の呼び名として定着した表記で書く。 |
-| [J503](plain-language/references/japanese.md#j503-専門用語を積極的に使う) | 専門用語を積極的に使い、読み手にとって難しいと判断した語には補足を付ける。 |
-| [J504](plain-language/references/japanese.md#j504-略語に展開形を併記する) | 略語には初出で展開形を併記する。 |
-| [J505](plain-language/references/japanese.md#j505-固有名詞は定着した表記で書く) | 固有名詞は日本語で定着した表記で書き、人名は初出で綴りを添える。 |
-| [J601](plain-language/references/japanese.md#j601-機能語をひらがなで書き常用漢字を基本にする) | 機能語はひらがなで書き、常用漢字表を基本にする。分野で定着した表外字の語は漢字で書く。 |
-| [J602](plain-language/references/japanese.md#j602-漢字の誤変換が疑われる字を直す) | 漢字の誤変換が疑われる字は、辞書にある語形に直す。 |
-| [J603](plain-language/references/japanese.md#j603-カタカナ語の長音を統一する) | カタカナ語の語尾の長音は原語の綴りで決め、文書内で統一する。 |
-| [J604](plain-language/references/japanese.md#j604-半角と全角を使い分ける) | 数字と英字は半角で書き、半角文字の前後に半角スペースを置く。記号は係る文字に合わせる。 |
+| [J605](plain-language/references/japanese.md#j605-技術文書で半角と全角を使い分ける) | 技術的な文章では、数字と英字を半角で書き、前後に半角スペースを置く。 |
 
 </details>
 

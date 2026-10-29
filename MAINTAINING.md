@@ -50,9 +50,12 @@ principle, whatever its resemblance to a retired one.
 
 | Retired ID | Successor | Note |
 | --- | --- | --- |
+| P102 | — | Few principles remain, so the model settles conflicts. |
 | P103 | — | Voice needed protecting only from rules that are now gone. |
 | P202 | — | The skill no longer prescribes how to choose examples. |
+| P301 | — | The model already uses pronouns well, and its rule to repeat nouns added repetition. |
 | P302 | — | The skill no longer prescribes where the point goes. |
 | P303 | P701 | P701 covers unsupported causes in an edit; P201 covers them in new text. |
 | P304 | P402 | Only the rule against labels and colons remained, and it is about one sentence. |
+| P401 | P101 | Nouns for actions are common and clear; P101 covers those that hide the point. |
 | P702 | P701 | Merged into one principle about edits and translations. |

@@ -27,9 +27,6 @@ its reference.
 | English | [references/english.md](references/english.md) |
 | Japanese | [references/japanese.md](references/japanese.md) |
 
-When principles conflict, follow
-[P102](#p102-resolve-conflicts-by-precedence).
-
 ## Principle index
 
 Each principle has application guidance, a reason, and an example.
@@ -37,10 +34,7 @@ Each principle has application guidance, a reason, and an example.
 | ID | Principle |
 | --- | --- |
 | [P101](#p101-say-the-point-itself) | Say the point itself, not the circumstances around it. |
-| [P102](#p102-resolve-conflicts-by-precedence) | Apply meaning and logical structure first, consistent terms second, and this file's principles before a language reference. |
 | [P201](#p201-support-the-point-as-far-as-the-reader-needs) | Give the reasons and background the reader needs, and no more. |
-| [P301](#p301-make-references-clear) | Use pronouns when their references are clear in context. |
-| [P401](#p401-express-actions-with-verbs) | Express actions with verbs and avoid unnecessary nominalization. |
 | [P402](#p402-say-it-in-a-sentence) | Say how the parts relate in words, not with a label or a colon. |
 | [P501](#p501-keep-terms-consistent) | Use the same term for the same concept. |
 | [P502](#p502-use-the-terms-readers-in-the-field-use) | Use the terms readers in the field use, written their way. |
@@ -57,27 +51,6 @@ the circumstances delivers a different point from the one you meant.
 
 [Back to the principle index](#principle-index)
 
-### P102 Resolve conflicts by precedence
-
-**Application.** When principles conflict, apply them in this order:
-
-1. Preserve meaning and logical structure ([P701](#p701-keep-the-meaning-you-were-not-asked-to-change)).
-2. Keep terms consistent ([P501](#p501-keep-terms-consistent)).
-3. Apply the remaining principles.
-
-The principles in this file take precedence over the principles in a
-language reference. When this order does not settle a conflict, judge by
-[P701](#p701-keep-the-meaning-you-were-not-asked-to-change) and
-[P101](#p101-say-the-point-itself).
-
-**Reason.** Without a fixed order, the same conflict is settled differently
-from one passage to the next, and the text becomes inconsistent.
-
-**Example.** Replacing a repeated term with a synonym would improve the
-rhythm of a sentence but break P501. Keep the term.
-
-[Back to the principle index](#principle-index)
-
 ## 2xx Content
 
 ### P201 Support the point as far as the reader needs
@@ -89,47 +62,7 @@ otherwise say what you observed.
 
 [Back to the principle index](#principle-index)
 
-## 3xx Discourse
-
-### P301 Make references clear
-
-**Application.** Use a pronoun when its reference is clear in context.
-Otherwise repeat the noun, even next to another occurrence. Consider the
-distance from the noun and the plausible interpretations. A continuing
-topic often allows a pronoun; a change in actor or topic may require a noun.
-
-**Reason.** A pronoun can reduce repetition without changing the term.
-Its usefulness depends on whether readers can identify the reference.
-
-**Example.** The pronoun has a clear reference here:
-
-> The client sends a request. The server validates it.
-
-The actor is unclear here:
-
-> The client sends a request to the server. It validates the request.
-
-If the server is the actor, replace "It" with "The server."
-
-[Back to the principle index](#principle-index)
-
 ## 4xx Sentence
-
-### P401 Express actions with verbs
-
-**Application.** Express actions directly with verbs where possible.
-Avoid unnecessary nominalization: expressing an action as a noun when a
-verb would serve the meaning. Keep noun forms when needed, and preserve
-the topic and logical structure.
-
-**Reason.** A noun combined with a general verb can add words without
-adding meaning.
-
-**Example.** Prefer "The server validates the request" to "The server
-performs validation of the request." Keep "The server cancels validation":
-cancellation is the action, and validation is its object.
-
-[Back to the principle index](#principle-index)
 
 ### P402 Say it in a sentence
 
@@ -147,8 +80,7 @@ instead.
 Use the same term for the same concept throughout the text, and different
 terms for different concepts. A new word makes the reader check whether
 the concept changed, so do not switch to a synonym to avoid repetition. A
-pronoun ([P301](#p301-make-references-clear)) or another form of the same
-word ([P401](#p401-express-actions-with-verbs)) keeps the concept.
+pronoun or another form of the same word keeps the concept.
 
 [Back to the principle index](#principle-index)
 

@@ -2,8 +2,7 @@
 
 Apply these additions when writing, editing, reviewing, or translating into
 English. Use the [shared principles](../SKILL.md#principle-index)
-throughout; when principles conflict, follow
-[P102](../SKILL.md#p102-resolve-conflicts-by-precedence).
+throughout.
 
 ## Principle index
 

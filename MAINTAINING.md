@@ -1,15 +1,13 @@
 # Maintain the principles
 
 This file is for the people who maintain the plain-language skill. The
-agent that applies the principles does not read it, so it stays outside
-the skill directory.
+agent does not read it, so it stays outside the skill directory.
 
 ## IDs
 
 An ID is a letter and three digits, such as `P501`. The letter names the
-language the principle applies to, and the first digit names the level: the
-smallest span of text a reader needs to tell whether the principle is
-followed.
+language, and the first digit names the level, which is the smallest span
+of text a reader needs to tell whether the principle is followed.
 
 | Letter | Applies to |
 | --- | --- |

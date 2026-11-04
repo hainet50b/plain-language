@@ -138,11 +138,12 @@ python scripts/compare.py "Explain the Strangler Fig pattern." \
   so that a person can pick the comparison out of a listing later. For a
   report, reuse the slug from the report's file name.
 - Keep token use low. Leave `--samples` at 1 unless the user wants to see
-  how much the replies vary. Unless the user names a model, propose the
-  least capable model that answers the prompt well, such as `opus`, and
-  pass it with `--model`; the agent's default is often its most capable and
-  most expensive model. Use the default or a stronger model only when the
-  user asks for it or when the comparison is about that model.
+  how much the replies vary. Unless the user names a model, propose one
+  that costs less than the agent's default but still answers the prompt
+  well, such as `opus`, and pass it with `--model`. The default is often
+  the most capable and most expensive model. Use it or a stronger model
+  only when the user asks for it or when the comparison is about that
+  model.
 
 ## Show the comparison
 

@@ -12,9 +12,9 @@ description: >-
 # plain-language-report
 
 This skill records an expression that feels unnatural to a reader as a
-report: the expression, the reader's impression of it, and a prompt that
-produces it. The agent asks what felt unnatural and builds the report from
-the answer.
+report, which holds the expression, the reader's impression of it, and a
+prompt that produces it. The agent asks what felt unnatural and builds the
+report from the answer.
 
 ## Terms
 
@@ -71,13 +71,13 @@ The sections record the report itself:
 | --- | --- |
 | `## Prompt` | The instruction sent to the model. |
 | `## Source` | The text the prompt edits or translates. Present only when there is one. |
-| `## Problem` | Two subsections. `### Expression` names the expression: a word, a description such as "every reply ends with an offer", a span quoted from a reply, or several of these. `### Impression` gives what the reporter felt about it. |
+| `## Problem` | Two subsections. `### Expression` names the expression as a word, a description such as "every reply ends with an offer", a span quoted from a reply, or several of these. `### Impression` gives what the reporter felt about it. |
 | `## Expected` | How the expression should read. |
 | `## Comparisons` | Empty when the report is written. The maintainers later add the comparisons they make from the report. |
 
 ## Make a report
 
-Making a report is a conversation: hear what felt unnatural, build the
+Making a report is a conversation. Hear what felt unnatural, build the
 report from it, show the report, and go back when it misses the point.
 
 ### Hear the impression
@@ -97,8 +97,8 @@ Help them say what they have not yet put into words:
 
 Move on to building the report when you have these three things:
 
-1. The expression: a word, a description such as "every reply ends with an
-   offer", a span from a reply, or several of these.
+1. The expression, as a word, a description such as "every reply ends with
+   an offer", a span from a reply, or several of these.
 2. What the reporter felt was unnatural about it.
 3. Enough to write a prompt that produces the expression.
 
@@ -111,8 +111,8 @@ the reporter.
   reporter gave the prompt, use theirs. Put the text the prompt edits or
   translates under `## Source`; when that text is long, keep only the part
   needed to produce the expression.
-- Under `### Expression`, put the expression in the forms you heard it: a
-  word, a description, a quotation, or several of these.
+- Under `### Expression`, put the expression in the forms you heard it in,
+  whether a word, a description, a quotation, or several of these.
 - Under `### Impression`, put what the reporter said. You may soften the
   wording so that the reporter is comfortable handing the report on, but
   keep what they felt.
@@ -143,8 +143,8 @@ English slug for the topic such as `idempotent-gloss`, and print the path.
 ## List and show reports
 
 When the user asks what reports there are, list the files in
-`~/.plain-language/reports/` as a table with one row per report: the date,
-the slug linked to the file, and the `status`.
+`~/.plain-language/reports/` as a table with one row per report, giving the
+date, the slug linked to the file, and the `status`.
 
 When the user asks about one report, print the whole file inside a fenced
 code block, so that they can copy it with one click and paste it to a
@@ -155,7 +155,7 @@ maintainer.
 The maintainers keep reports in `evals/reports/` in a checkout of the
 plain-language repository, where anyone can read them. When the user asks
 to import a report, first read it for anything that should not be
-published: names, internal details, and source text that is not the
+published, such as names, internal details, and source text that is not the
 reporter's to share. Propose replacements that keep the expression and
 what the reporter felt, and apply them after the user agrees. Then copy
 the file into `evals/reports/` without changing its name.
@@ -167,7 +167,7 @@ the expression with the plain-language-compare skill, and the user says
 what became of it, change `status` to `resolved` or `not-planned` and add
 to `principles` the IDs of the principles related to the expression.
 Under `## Comparisons`, add one bullet for each comparison kept in
-`evals/comparisons/` for the report: a link to the comparison and a
+`evals/comparisons/` for the report, with a link to the comparison and a
 summary of what it showed.
 
 ## Update the table of findings
@@ -175,10 +175,10 @@ summary of what it showed.
 The table under `## Past findings` in `evals/README.md` lists every report
 kept in `evals/reports/`.
 
-When you import a report, add a row for it: the report linked to its file,
-an empty Comparison cell, the language of the reply, and the status and
-principles from its frontmatter.
+When you import a report, add a row for it with the report linked to its
+file, an empty Comparison cell, the language of the reply, and the status
+and principles from its frontmatter.
 
-When you record the outcome of a report, bring its row up to date: the
+When you record the outcome of a report, bring its row up to date with the
 comparisons linked to their directories, the status, and the principles
 linked to their sections.

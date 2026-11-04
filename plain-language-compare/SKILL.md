@@ -5,8 +5,8 @@ description: >-
   Run one prompt with and without the plain-language skill, across versions
   of it, or across models, and show the replies side by side. Use when the
   user asks to compare, try, or demonstrate what the plain-language skill does
-  to a reply, how models differ under it, or to check a report: to reproduce
-  the expression it describes, or to confirm that the expression no longer
+  to a reply, how models differ under it, or to check a report, either to
+  reproduce the expression it describes or to confirm that it no longer
   appears.
 ---
 
@@ -21,7 +21,7 @@ that a person can see what changes between them.
 | Term | Meaning |
 | --- | --- |
 | prompt | The instruction sent to the model, followed by the source text when the prompt edits or translates something. |
-| principles | The principle files the model reads before it replies: none, the installed skill, a version in the repository, or any directory holding them. |
+| principles | The principle files the model reads before it replies, which can be none, the installed skill, a version in the repository, or any directory holding them. |
 | sample | One reply to the prompt from one model under one set of principles. |
 | comparison | One prompt, and the samples for it under each set of principles and each model, recorded in one directory. |
 | annotation | A note on a span of one sample, or of the source text, that marks the span as good or bad. |
@@ -125,11 +125,11 @@ python scripts/compare.py "Explain the Strangler Fig pattern." \
    principles, the agent, the models, the effort, the number of model
    calls, and the output directory, and calls no model.
 2. Show that output to the user and ask for permission to run. Say plainly
-   when the run is large: many model calls, more than one model, or more
-   than one sample per set of principles.
+   when the run is large, such as when it makes many model calls, uses more
+   than one model, or takes more than one sample per set of principles.
 3. Run the command without `--dry-run` only after the user agrees, and run
-   it in the background: a run takes minutes, and the user may want to keep
-   talking meanwhile. Report the result when it finishes.
+   it in the background, because a run takes minutes and the user may want
+   to keep talking meanwhile. Report the result when it finishes.
 
 ### Rules
 
@@ -154,11 +154,11 @@ pane with the source text when the prompt has one. A pane can be switched to
 any sample of any set, or to the source text, so two samples of the same
 set, or a source and its translation, can be read next to each other.
 
-The arrangement of the panes lives in the URL after `#`: one entry per pane
-in the form `model,principles,sample`, or `source` for the source text,
-entries separated by `;`, model and principles URI-encoded. When you report
-a comparison, give the user the URL for the arrangement they are likely to
-want, not only the directory.
+The URL after `#` holds the arrangement of the panes. It has one entry per
+pane, in the form `model,principles,sample`, or `source` for the source
+text. Entries are separated by `;`, and the model and principles are
+URI-encoded. When you report a comparison, give the user the URL for the
+arrangement they are likely to want, not only the directory.
 
 The first sample without and with the installed principles:
 

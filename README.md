@@ -86,7 +86,7 @@ and how to add, revise, and retire a principle.
 | ID | Principle |
 | --- | --- |
 | [J402](plain-language/references/japanese.md#j402-読点で係り受けを変えない) | 読点は係り受けを変えない範囲で打ち、係り受けを示す必要のない位置には打たない。 |
-| [J502](plain-language/references/japanese.md#j502-英語由来の用語の表記を選ぶ) | 英語由来の専門用語とビジネス用語は、英単語を訳さず、概念の呼び名として定着した表記で書く。 |
+| [J502](plain-language/references/japanese.md#j502-英語由来の用語の表記を選ぶ) | 英語由来の用語は、その分野の人が日本語の文章の中で書く呼び名で書く。 |
 | [J605](plain-language/references/japanese.md#j605-技術文書で半角と全角を使い分ける) | 技術的な文章では、数字と英字を半角で書き、前後に半角スペースを置く。 |
 
 </details>
